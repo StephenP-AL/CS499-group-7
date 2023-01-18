@@ -143,20 +143,3 @@ class vehMaintenanceReport{
 
 }
 @enduml
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
