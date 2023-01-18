@@ -20,7 +20,9 @@ client --* shipmentOut
 shipmentIn -- vehicle
 shipmentOut -- vehicle
 employee -- payrollReport
-maintenance -- maintenanceReport
+maintenance -- maintenanceReportAggragate
+maintenance -- vehMaintenanceReport
+vehMaintenanceReport --* partsList
 
 class shipmentIn{
   +shipID
@@ -29,6 +31,7 @@ class shipmentIn{
   +departure - date/time
   +estArrival - date/time
   +arrived - bool
+  +payment - bool
   +driver
   +purchaseOrder
 }
@@ -39,6 +42,7 @@ class shipmentOut{
   +departure - date/time
   +estArrival - date/time
   +arrived - bool
+  +payment - bool
   +driver
   +manifest
   +purchaseOrder
@@ -123,23 +127,56 @@ class part{
   +partName
 }
 
-class payrollReport{
+interface payrollReport{
  +employee.employeeID
  +name(employee.lName,employee.fName)
  +employee.startDate
  +employee.pay
  }
  
-class maintenanceReport{
+interface maintenanceReportAggragate{
  +maintenance.vehID
  +maintenance.description
  +cost - Sum of parts list costs
  }
  
-class vehMaintenanceReport{
+interface vehMaintenanceReport{
 +maintenance.vehID
 +maintenance.maintID
 +maintenance.description
-
 }
+
+interface inboundReport{
+ +shipID
+ +cost
+ +paid - bool
+ }
+inboundReport -- shipmentIn
+
+interface outboundReport{
+ +shipID
+ +cost
+ +paid
+ }
+ outboundReport -- shipmentOut
+
 @enduml
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
