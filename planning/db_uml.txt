@@ -1,0 +1,162 @@
+@startuml
+
+title Trucking Company Management System
+
+account -- employee
+vehicle --* maintenance
+maintenance --*partsList
+partsList -- part
+employee --* shipmentIn
+employee --* shipmentOut
+shipmentIn -- purchaseOrder
+shipmentOut -- purchaseOrder
+shipmentOut -- manifest
+purchaseOrder --* orderItem
+manifest --* manifestItem
+manifestItem -- product
+orderItem -- product
+client --* shipmentIn
+client --* shipmentOut
+shipmentIn -- vehicle
+shipmentOut -- vehicle
+employee -- payrollReport
+maintenance -- maintenanceReport
+
+class shipmentIn{
+  +shipID
+  +clientID
+  +vehID
+  +departure - date/time
+  +estArrival - date/time
+  +arrived - bool
+  +driver
+  +purchaseOrder
+}
+class shipmentOut{
+  +shipID
+  +clientID
+  +vehID
+  +departure - date/time
+  +estArrival - date/time
+  +arrived - bool
+  +driver
+  +manifest
+  +purchaseOrder
+}
+class client{
+  +clientID
+  +clientName
+  +address
+  +city
+  +state
+  +zip
+}
+class manifest{
+  +manifestID
+  +costShippingHandling
+}
+class purchaseOrder{
+  +purchaseOrderID
+  +costShippingHandling
+}
+class manifestItem{
+  +manifestID
+  +productID
+  +quantity
+}
+class orderItem{
+  +purchaseOrderID
+  +productID
+  +quantity
+  +status - OnHand/Backorder/Unavailable
+}
+class product{
+  +productID
+  +price
+  +productName
+}
+
+class account {
+  +employeeID
+  +accountType
+  }
+class employee{
+  +employeeID
+  +fName
+  +mName
+  +lName
+  +street
+  +city
+  +state
+  +zip
+  +homePhone
+  +cellPhone
+  +pay
+  +startDate - date
+}
+
+class vehicle{
+  +vehID
+  +make
+  +model
+  +year
+  +vehType
+  +loadCapacity
+  +height
+  +partsList
+  }
+class maintenance{
+  +maintID
+  +vehID
+  +description
+  +partsList
+}
+class partsList{
+  +listID
+  +partID
+  +source
+  +cost
+}
+class part{
+  +partID
+  +onHand
+  +partName
+}
+
+class payrollReport{
+ +employee.employeeID
+ +name(employee.lName,employee.fName)
+ +employee.startDate
+ +employee.pay
+ }
+ 
+class maintenanceReport{
+ +maintenance.vehID
+ +maintenance.description
+ +cost - Sum of parts list costs
+ }
+ 
+class vehMaintenanceReport{
++maintenance.vehID
++maintenance.maintID
++maintenance.description
+
+}
+@enduml
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
