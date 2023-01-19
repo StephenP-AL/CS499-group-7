@@ -24,7 +24,7 @@ maintenance -- maintenanceReportAggragate
 maintenance -- vehMaintenanceReport
 vehMaintenanceReport --* partsList
 
-class shipmentIn{
+class shipmentIn << (R,#FF0202) >>{
   +shipID
   +clientID
   +vehID
@@ -35,7 +35,7 @@ class shipmentIn{
   +driver
   +purchaseOrder
 }
-class shipmentOut{
+class shipmentOut<< (R,#FF0202) >>{
   +shipID
   +clientID
   +vehID
@@ -47,7 +47,7 @@ class shipmentOut{
   +manifest
   +purchaseOrder
 }
-class client{
+class client<< (R,#FF0202) >>{
   +clientID
   +clientName
   +address
@@ -55,36 +55,36 @@ class client{
   +state
   +zip
 }
-class manifest{
+class manifest<< (R,#FF0202) >>{
   +manifestID
   +costShippingHandling
 }
-class purchaseOrder{
+class purchaseOrder<< (R,#FF0202) >>{
   +purchaseOrderID
   +costShippingHandling
 }
-class manifestItem{
+class manifestItem<< (R,#FF0202) >>{
   +manifestID
   +productID
   +quantity
 }
-class orderItem{
+class orderItem<< (R,#FF0202) >>{
   +purchaseOrderID
   +productID
   +quantity
   +status - OnHand/Backorder/Unavailable
 }
-class product{
+class product<< (R,#FF0202) >>{
   +productID
   +price
   +productName
 }
 
-class account {
+class account << (R,#FF0202) >> {
   +employeeID
   +accountType
   }
-class employee{
+class employee << (R,#FF0202) >> {
   +employeeID
   +fName
   +mName
@@ -99,7 +99,7 @@ class employee{
   +startDate - date
 }
 
-class vehicle{
+class vehicle << (R,#FF0202) >> {
   +vehID
   +make
   +model
@@ -109,51 +109,51 @@ class vehicle{
   +height
   +partsList
   }
-class maintenance{
+class maintenance << (R,#FF0202) >> {
   +maintID
   +vehID
   +description
   +partsList
 }
-class partsList{
+class partsList << (R,#FF0202) >> {
   +listID
   +partID
   +source
   +cost
 }
-class part{
+class part<< (R,#FF0202) >>{
   +partID
   +onHand
   +partName
 }
 
-interface payrollReport{
+interface payrollReport << (V,CD90FF) >>{
  +employee.employeeID
  +name(employee.lName,employee.fName)
  +employee.startDate
  +employee.pay
  }
  
-interface maintenanceReportAggragate{
+interface maintenanceReportAggragate << (V,CD90FF) >>{
  +maintenance.vehID
  +maintenance.description
  +cost - Sum of parts list costs
  }
  
-interface vehMaintenanceReport{
+interface vehMaintenanceReport << (V,CD90FF) >>{
 +maintenance.vehID
 +maintenance.maintID
 +maintenance.description
 }
 
-interface inboundReport{
+interface inboundReport << (V,CD90FF) >>{
  +shipID
  +cost
  +paid - bool
  }
 inboundReport -- shipmentIn
 
-interface outboundReport{
+interface outboundReport << (V,CD90FF) >>{
  +shipID
  +cost
  +paid
