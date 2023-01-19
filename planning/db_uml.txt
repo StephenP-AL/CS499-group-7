@@ -161,22 +161,3 @@ interface outboundReport << (V,CD90FF) >>{
  outboundReport -- shipmentOut
 
 @enduml
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
