@@ -1,0 +1,60 @@
+@startuml
+title Truckr Use Case Diagram
+left to right direction
+
+
+:Driver:
+"Maintainance" as :maint:
+"Full Access" as :full:
+"Shipping Manager" as :ship:
+
+"Log in" as (log)
+
+package "Driver Stories" as DS {
+"View assigned incoming shipments" as (vIn)
+"View assigned outgoing shipments" as (vOut)
+"Select incoming shipment" as (selIn)
+"Select outgoing shipment" as (selOut)
+"View manifest" as (vMan)
+"View shipping order" as (vOrd)
+"Confirm delivery" as (conf)
+}
+
+
+package "Shipping Manager Stories" as SM{
+"View Equipment Data" as (vEquip)
+"Create/edit incoming shipments" as (edIn)
+"Create/edit outgoing shipments" as (edOut)
+"Create/edit manifest" as (edMan)
+"Create/edit shipping order" as (edOrd)
+}
+
+
+package "Maintenance Stories" as MS{
+"Create/edit maintenance records" as (edMaint)
+"View fleet mainteance report" as (fleet)
+"View vehicle report" as (vReport)
+"View maintenance data" as (vMaint)
+}
+
+package "Full Access Stories" as FULLS{
+(Create/edit employee data)
+(Create/edit equipment data)
+(View payroll report)
+
+}
+Driver -r-> log
+Driver --> DS 
+
+ship -r-> log
+ship --> SM
+
+maint --> MS
+maint -r-> log
+
+full --> FULLS
+full -r-> log
+full --> MS
+full --> SM
+ship --> vMaint
+@enduml
