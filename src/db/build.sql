@@ -64,3 +64,17 @@ CREATE TABLE purchaseOrder
 	costShippingHandling numeric,
 	PRIMARY KEY (purchaseOrderID)
 );
+
+DROP TABLE vehicle;
+CREATE TABLE vehicle
+(	vehID int,
+	make varchar(20),
+	model varchar(20),
+	year int,
+	vehType varchar(20),
+	loadCapacity int,
+	height int,
+	partsList int,
+	PRIMARY KEY (vehID)
+	--FK parts list
+);
