@@ -58,4 +58,9 @@ CREATE TABLE manifest
 	PRIMARY KEY (manifestID)
 );
 
-
+DROP TABLE purchaseOrder;
+CREATE TABLE purchaseOrder
+(	purchaseOrderID int,
+	costShippingHandling numeric,
+	PRIMARY KEY (purchaseOrderID)
+);
