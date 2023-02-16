@@ -44,11 +44,13 @@ CREATE TABLE shipmentOut
 	payment boolean,
 	driver int,
 	manifest int,
-	purchaseorder int,
+	purchaseOrder int,
 	PRIMARY KEY (shipID),
 	FOREIGN KEY(clientID) REFERENCES client(clientID),
-	FOREIGN KEY(driver) REFERENCES employee(employeeID)
-	--need FK for manifest, purchase order, and vehicle
+	FOREIGN KEY(driver) REFERENCES employee(employeeID),
+	FOREIGN KEY(manifest) REFERENCES manifest(manifestID),
+	FOREIGN KEY(purchaseOrder) REFERENCES purchaseOrder(purchaseOrderID),
+	FOREIGN KEY(vehID) REFERENCES vehicle(vehID)
 );
 
 DROP TABLE manifest;
@@ -59,8 +61,8 @@ CREATE TABLE manifest
 );
 
 DROP TABLE purchaseOrder;
-CREATE TABLE purchaseOrder
-(	purchaseOrderID int,
+CREATE TABLE purchaseOrder 
+(	purchaseOrderID int, 
 	costShippingHandling numeric,
 	PRIMARY KEY (purchaseOrderID)
 );
@@ -76,5 +78,4 @@ CREATE TABLE vehicle
 	height int,
 	partsList int,
 	PRIMARY KEY (vehID)
-	--FK parts list
 );

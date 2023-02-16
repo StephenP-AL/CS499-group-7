@@ -1,0 +1,9 @@
+insert into shipmentOut values('O1',1,2,'2023-12-12 04:00:00','2023-12-12 08:00:00',false,true,1,1,1);
+insert into shipmentOut values('O2',2,4,'2023-12-12 04:00:00','2023-12-12 08:00:00',false,true,1,2,2);
+insert into shipmentOut values('O3',3,1,'2023-12-12 04:00:00','2023-12-12 08:00:00',false,true,1,3,3);
+insert into shipmentOut values('O4',4,6,'2023-12-12 04:00:00','2023-12-12 08:00:00',false,true,1,4,4);
+insert into shipmentOut values('O5',5,2,'2023-12-12 04:00:00','2023-12-12 08:00:00',false,true,1,5,5);
+insert into shipmentOut values('O6',6,1,'2023-12-12 04:00:00','2023-12-12 08:00:00',false,true,1,6,6);
+insert into shipmentOut values('O7',7,3,'2023-12-12 04:00:00','2023-12-12 08:00:00',false,true,5,1,1);
+insert into shipmentOut values('O8',5,5,'2023-12-12 04:00:00','2023-12-12 08:00:00',false,true,5,2,2);
+insert into shipmentOut values('O9',2,2,'2023-12-12 04:00:00','2023-12-12 08:00:00',false,true,5,3,3);

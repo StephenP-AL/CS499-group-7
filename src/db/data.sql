@@ -4,4 +4,4 @@
 .read dataManifest.sql
 .read dataPurchaseOrder.sql
 .read dataVehicle.sql
-
+.read dataShipmentOut.sql
