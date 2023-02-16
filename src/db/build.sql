@@ -45,8 +45,17 @@ CREATE TABLE shipmentOut
 	driver int,
 	manifest int,
 	purchaseorder int,
-	PRIMAY KEY (shipID),
+	PRIMARY KEY (shipID),
 	FOREIGN KEY(clientID) REFERENCES client(clientID),
 	FOREIGN KEY(driver) REFERENCES employee(employeeID)
 	--need FK for manifest, purchase order, and vehicle
 );
+
+DROP TABLE manifest;
+CREATE TABLE manifest
+(	manifestID int,
+	costShippingHandling numeric,
+	PRIMARY KEY (manifestID)
+);
+
+
