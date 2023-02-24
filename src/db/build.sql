@@ -79,3 +79,23 @@ CREATE TABLE vehicle
 	partsList int,
 	PRIMARY KEY (vehID)
 );
+
+DROP TABLE shipmentIn;
+CREATE TABLE shipmentIn
+(	shipID varchar(10),
+	clientID int,
+	vehID int,
+	departure datetime,
+	estArrival datetime,
+	arrived boolean,
+	payment boolean,
+	driver int,
+	purchaseOrder int,
+	PRIMARY KEY (shipID),
+	FOREIGN KEY(clientID) REFERENCES client(clientID),
+	FOREIGN KEY(driver) REFERENCES employee(employeeID),
+	FOREIGN KEY(purchaseOrder) REFERENCES purchaseOrder(purchaseOrderID),
+	FOREIGN KEY(vehID) REFERENCES vehicle(vehID)
+);
+
+

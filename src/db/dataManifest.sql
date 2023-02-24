@@ -1,8 +1,15 @@
-INSERT INTO manifest VALUES (1, 14.95);
-INSERT INTO manifest VALUES (2, 14.95);
-INSERT INTO manifest VALUES (3, 14.95);
-INSERT INTO manifest VALUES (4, 14.95);
-INSERT INTO manifest VALUES (5, 14.95);
-INSERT INTO manifest VALUES (6, 14.95);
-INSERT INTO manifest VALUES (7, 14.95);
-INSERT INTO manifest VALUES (8, 14.95);
+-- Insert data into manifest table
+INSERT INTO manifest (manifestID, costShippingHandling)
+VALUES
+(1, 500),
+(2, 500),
+(3, 500),
+(4, 500),
+(5, 500),
+(6, 500),
+(7, 500),
+(8, 500),
+(9, 500),
+(10,500);
+
+
