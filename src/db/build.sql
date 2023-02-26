@@ -98,4 +98,20 @@ CREATE TABLE shipmentIn
 	FOREIGN KEY(vehID) REFERENCES vehicle(vehID)
 );
 
+DROP TABLE part;
+CREATE TABLE part
+(	partID int,
+	onHand int,
+	partName varchar(30)
+);
+
+DROP TABLE partsList;
+CREATE TABLE partsList
+(	listID int,
+	partID int,
+	source varchar(30),
+	cost numeric,
+	PRIMARY KEY(listID,partID),
+	FOREIGN KEY(partID) REFERENCES part(partID)
+);
 

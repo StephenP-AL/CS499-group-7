@@ -5,3 +5,6 @@
 .read dataPurchaseOrder.sql
 .read dataVehicle.sql
 .read dataShipmentOut.sql
+.read dataShipmentIn.sql
+.read dataPart.sql
+.read dataPartsList.sql
