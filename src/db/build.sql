@@ -78,6 +78,7 @@ CREATE TABLE vehicle
 	height int,
 	partsList int,
 	PRIMARY KEY (vehID)
+	FOREIGN KEY(partsList) REFERENCES partsList(listID)
 );
 
 DROP TABLE shipmentIn;
@@ -115,3 +116,14 @@ CREATE TABLE partsList
 	FOREIGN KEY(partID) REFERENCES part(partID)
 );
 
+DROP TABLE maintenance;
+CREATE TABLE maintenance
+(	maintID int,
+	vehID int,
+	description varchar(30),
+	completed datetime,
+	partsList int,
+	PRIMARY KEY(maintID),
+	FOREIGN KEY(vehID) REFERENCES vehicle(vehID),
+	FOREIGN KEY(partsList) REFERENCES partsList(listID)
+);

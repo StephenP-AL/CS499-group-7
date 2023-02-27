@@ -8,3 +8,4 @@
 .read dataShipmentIn.sql
 .read dataPart.sql
 .read dataPartsList.sql
+.read dataMaintenance.sql
