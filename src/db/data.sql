@@ -10,3 +10,4 @@
 .read dataPartsList.sql
 .read dataMaintenance.sql
 .read dataProduct.sql
+.read dataManifestID.sql
