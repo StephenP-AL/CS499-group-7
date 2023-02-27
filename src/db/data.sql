@@ -9,3 +9,4 @@
 .read dataPart.sql
 .read dataPartsList.sql
 .read dataMaintenance.sql
+.read dataProduct.sql

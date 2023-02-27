@@ -127,3 +127,10 @@ CREATE TABLE maintenance
 	FOREIGN KEY(vehID) REFERENCES vehicle(vehID),
 	FOREIGN KEY(partsList) REFERENCES partsList(listID)
 );
+DROP TABLE product;
+CREATE TABLE product
+(	productID int,
+	price numeric,
+	productName varchar(30),
+	PRIMARY KEY(productID)
+);
