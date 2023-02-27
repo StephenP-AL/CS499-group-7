@@ -145,3 +145,14 @@ CREATE TABLE manifestItem
 	FOREIGN KEY(manifestID) REFERENCES manifest(manifestID),
 	FOREIGN KEY(productID) REFERENCES product(productID)
 );
+
+DROP TABLE orderItem;
+CREATE TABLE orderItem
+(	purchaseOrderID int,
+	productID int,
+	quantity int,
+	status varchar(11),
+	PRIMARY KEY (purchaseOrderID,productID),
+	FOREIGN KEY (purchaseOrderID) REFERENCES purchaseOrder(purchaseOrderID),
+	FOREIGN KEY (productID) REFERENCES product(productID)
+);

@@ -11,3 +11,4 @@
 .read dataMaintenance.sql
 .read dataProduct.sql
 .read dataManifestID.sql
+.read dataOrderItem.sql
