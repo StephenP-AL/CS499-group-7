@@ -12,6 +12,7 @@ CREATE TABLE employee
 	cellPhone varchar(10),
 	pay numeric,
 	startDate date,
+	username varchar(20),
 	PRIMARY KEY (employeeID)
 );
 
@@ -103,7 +104,8 @@ DROP TABLE part;
 CREATE TABLE part
 (	partID int,
 	onHand int,
-	partName varchar(30)
+	partName varchar(30),
+	PRIMARY KEY (partID)
 );
 
 DROP TABLE partsList;
