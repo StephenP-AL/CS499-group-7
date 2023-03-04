@@ -114,6 +114,7 @@ class maintenance << (R,#FF0202) >> {
   +vehID
   +description
   +partsList
+  +dateComplete
 }
 class partsList << (R,#FF0202) >> {
   +listID
