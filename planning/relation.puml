@@ -97,6 +97,7 @@ class employee << (R,#FF0202) >> {
   +cellPhone
   +pay
   +startDate - date
+  +username
 }
 
 class vehicle << (R,#FF0202) >> {
