@@ -105,7 +105,7 @@ CREATE TABLE part
 (	partID int,
 	onHand int,
 	partName varchar(30),
-	PRIMARY KEY (partID)
+	PRIMARY KEY(partID)
 );
 
 DROP TABLE partsList;
