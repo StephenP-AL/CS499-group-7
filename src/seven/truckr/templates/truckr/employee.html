@@ -1,0 +1,49 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Employees</h2>
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+	       	<th>First Name</th>    
+		<th>Middle Name</th>
+	       	<th>Last Name</th>  
+		<th>username</th>
+		<th>Address</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Zip</th>
+		<th>Home Phone</th>
+		<th>Cell Phone</th>
+		<th>Pay</th>
+		<th>Start Date</th>
+		<th>Edit</th>
+       	</tr>
+{% if elist %}
+	{% for employee in elist %}
+	<tr>
+		<!--		<td><a href="/employee/{{employee.employeeID}}/">{{employee.employeeID}} </td>-->
+		<td>{{employee.employeeID}}</td>
+		<td>{{employee.fName}}</td>
+		<td>{{employee.mName}}</td>
+		<td>{{employee.lName}}</td>
+		<td>{{employee.username}}</td>
+		<td>{{employee.street}}</td>
+		<td>{{employee.city}}</td>
+		<td>{{employee.state}}</td>
+		<td>{{employee.zipCode}}</td>
+		<td>{{employee.homePhone}}</td>
+		<td>{{employee.cellPhone}}</td>
+		<td>{{employee.pay}}</td>
+		<td>{{employee.startDate}}</td>
+		<td style = text-align:center><button type="button" onclick="window.location.href='/employee/{{employee.employeeID}}/';">Edit</button></td>
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No employees are available.</p>
+{% endif %}
+</table>
+</body>
+</html>
