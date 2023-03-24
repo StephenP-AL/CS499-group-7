@@ -1,0 +1,28 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Products</h2>
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+	       	<th>Product Name</th>    
+		<th>Price</th>
+       	</tr>
+{% if plist %}
+	{% for product in plist %}
+	<tr>
+		<!--		<td><a href="/employee/{{employee.employeeID}}/">{{employee.employeeID}} </td>-->
+		<td>{{product.productID}}</td>
+		<td>{{product.productName}}</td>
+		<td>{{product.price}}</td>
+		<td style = text-align:center><button type="button" onclick="window.location.href='/employee/{{employee.employeeID}}/';">Edit</button></td>
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No products are available.</p>
+{% endif %}
+</table>
+</body>
+</html>

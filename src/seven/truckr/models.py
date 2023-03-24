@@ -18,3 +18,20 @@ class employee(models.Model):
     def __str__(self):
         return self.username
 
+class product(models.Model):
+    productID = models.IntegerField(primary_key=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    productName = models.CharField(max_length=30)
+    def __str__(self):
+        return productName
+
+class orderItem(models.Model):
+    purchaseOrderID = models.IntegerField()
+    productID = models.IntegerField()
+    quantity = models.IntegerField()
+    status = models.CharField(max_length = 11)
+
+class purchaseOrder(models.Model):
+    purchaseOrderID = models.IntegerField(primary_key = True)
+    costShippingHandling = models.DecimalField(max_digits = 10, decimal_places = 2)
+
