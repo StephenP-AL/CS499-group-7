@@ -18,3 +18,10 @@ class employee(models.Model):
     def __str__(self):
         return self.username
 
+class product(models.Model):
+    productID = models.IntegerField(primary_key=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    productName = models.CharField(max_length=30)
+    def __str__(self):
+        return productName
+

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
-from truckr.models import employee
+from truckr.models import employee,product
 
 
 def index(request):
@@ -12,3 +12,9 @@ def employees(request):
     context = {'elist': elist}
     return(render(request, 'truckr/employees.html', context))
     return HttpResponse("Employee page")
+
+def products(request):
+    plist = product.objects.order_by('productID')
+    context = {'plist': plist}
+    return(render(request, 'truckr/products.html', context))
+    return HttpResponse("Product page")
