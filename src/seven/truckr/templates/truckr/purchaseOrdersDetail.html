@@ -1,0 +1,29 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Purchase Order Detail</h2>
+<table style="width:100%">  
+       	<tr>    
+	       	<th>Purchase Order</th>    
+	       	<th>Product</th>    
+	       	<th>Quantity</th>    
+	       	<th>Status</th>    
+       	</tr>
+{% if items%}
+	{% for item in items%}
+	<tr>
+		<!--		<td><a href="/order/{{order.orderID}}/">{{order.orderID}} </td>-->
+		<td>{{item.purchaseOrderID}}</td>
+		<td>{{item.productID}}</td>
+		<td>{{item.quantity}}</td>
+		<td>{{item.status}}</td>
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No orders are available.</p>
+{% endif %}
+</table>
+</body>
+</html>
