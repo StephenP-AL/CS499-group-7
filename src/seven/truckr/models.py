@@ -35,3 +35,13 @@ class purchaseOrder(models.Model):
     purchaseOrderID = models.IntegerField(primary_key = True)
     costShippingHandling = models.DecimalField(max_digits = 10, decimal_places = 2)
 
+class shipmentIn(models.Model):
+    shipID = models.CharField(max_length = 10, primary_key = True)
+    clientID = models.IntegerField()
+    vehID = models.IntegerField()
+    departure = models.DateTimeField()
+    estArrival = models.DateTimeField()
+    arrived = models.BooleanField()
+    payment = models.BooleanField()
+    driver = models.IntegerField()
+    purchaseOrder = models.IntegerField()
