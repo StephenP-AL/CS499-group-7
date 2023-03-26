@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Authentication</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+  </head>
+  <body>
+
+
+    <!--Prints the alerts for sucess and failed signin-->
+    {% for message in messages %}
+
+    <div id="alert-message" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" onclick="hideAlert()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    <h3>Welcome to Truckr</h3>
+
+    <!--Prints the users name in welcome mssg-->
+    {% if user.is_authenticated %}
+    <h3>Hello {{ fname }}</h3>
+    <h4>You're successfully logged in</h4>
+    <button type="submit"><a href="/signout"> SignOut</a></button>
+
+    <!--If not authenticated, give option to signup/in-->
+    {% else %}
+    <button type="submit"> <a href="/signup"> SignUp</a></button>
+    <button type="submit"><a href="/signin"> SignIn</a></button>
+    {% endif %}
+    
+
+	<script src="" async defer></script>
+  </body>
+</html>
+
+<script>
+    function hideAlert() {
+        document.getElementById("alert-message").style.display = "none";
+    }
+    </script>
