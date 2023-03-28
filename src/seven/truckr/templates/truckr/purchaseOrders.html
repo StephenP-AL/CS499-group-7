@@ -15,7 +15,7 @@
 		<!--		<td><a href="/order/{{order.orderID}}/">{{order.orderID}} </td>-->
 		<td>{{order.purchaseOrderID}}</td>
 		<td>{{order.costShippingHandling}}</td>
-		<td style = text-align:center><button type="button" onclick="window.location.href='/truckr/purchaseOrders/{{order.purchaseOrderID}}/';">Details</button></td>
+		<td style = text-align:center><button type="button" onclick="window.location.href='/purchaseOrders/{{order.purchaseOrderID}}/';">Details</button></td>
 	</tr>
 	{% endfor %}
 {% else %}
