@@ -25,22 +25,28 @@
     </div>
     {% endfor %}
 
-    <h3>Welcome to Truckr</h3>
-
+    <h3 style="text-align: center;">Welcome to Truckr</h3>
+    
+    <img src="{% static 'img/TruckrLogo.jpg' %}" alt="An image">
     <!--Prints the users name in welcome mssg-->
     {% if user.is_authenticated %}
-    <h3>Hello {{ fname }}</h3>
-    <h4>You're successfully logged in</h4>
-    <button type="submit"><a href="/signout"> SignOut</a></button>
-    <button type="submit"><a href="/purchaseOrders"> Purchase Orders</a></button>
-    <button type="submit"><a href="/employees"> Employees</a></button>
+    <h3 style="text-align: center;">Hello {{ fname }}</h3>
+    <h4 style="text-align: center;">You're successfully logged in</h4>
+    <div class="button-container">
+      <button type="submit"><a href="/signout"> SignOut</a></button>
+      <button type="submit"><a href="/purchaseOrders"> Purchase Orders</a></button>
+      <button type="submit"><a href="/employees"> Employees</a></button>
+    </div>
+    
 
 
 
     <!--If not authenticated, give option to signup/in-->
     {% else %}
-    <button type="submit"> <a href="/signup"> SignUp</a></button>
-    <button type="submit"><a href="/signin"> SignIn</a></button>
+    <div class="button-container">
+      <button type="submit"> <a href="/signup"> SignUp</a></button>
+      <button type="submit"><a href="/signin"> SignIn</a></button>
+    </div>
     {% endif %}
     
 
