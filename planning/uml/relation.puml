@@ -15,8 +15,8 @@ purchaseOrder --* orderItem
 manifest --* manifestItem
 manifestItem -- product
 orderItem -- product
-client --* shipmentIn
-client --* shipmentOut
+'client --* shipmentIn
+'client --* shipmentOut
 shipmentIn -- vehicle
 shipmentOut -- vehicle
 employee -- payrollReport
@@ -34,6 +34,12 @@ class shipmentIn << (R,#FF0202) >>{
   +payment - bool
   +driver
   +purchaseOrder
+  +clientName
+  +address
+  +city
+  +state
+  +zip
+
 }
 class shipmentOut<< (R,#FF0202) >>{
   +shipID
@@ -46,15 +52,21 @@ class shipmentOut<< (R,#FF0202) >>{
   +driver
   +manifest
   +purchaseOrder
+  +clientName
+  +address
+  +city
+  +state
+  +zip
+
 }
-class client<< (R,#FF0202) >>{
+/' class client<< (R,#FF0202) >>{
   +clientID
   +clientName
   +address
   +city
   +state
   +zip
-}
+}'/
 class manifest<< (R,#FF0202) >>{
   +manifestID
   +costShippingHandling
