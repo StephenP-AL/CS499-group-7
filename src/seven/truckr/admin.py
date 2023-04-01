@@ -12,3 +12,4 @@ admin.site.register(shipmentIn)
 
 #Template for copypasta
 #admin.site.register(<++>)  
+#this line allows me to commit
