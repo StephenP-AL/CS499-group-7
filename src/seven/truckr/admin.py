@@ -1,3 +1,15 @@
 from django.contrib import admin
+from .models import employee,product,orderItem,purchaseOrder,shipmentIn
 
 # Register your models here.
+
+admin.site.register(employee)
+admin.site.register(product)
+admin.site.register(orderItem)
+admin.site.register(purchaseOrder)
+admin.site.register(shipmentIn)
+#admin.site.register(client) #evidently not yet implemented
+
+#Template for copypasta
+#admin.site.register(<++>)  
+#this line allows me to commit
