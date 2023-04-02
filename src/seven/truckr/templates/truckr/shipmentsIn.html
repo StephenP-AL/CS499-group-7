@@ -20,7 +20,6 @@ name goes here:	{{username}}
 		<th>City</th>
 		<th>State</th>
 		<th>Zip</th>
-		<th>Edit</th>
        	</tr>
 {% if lst %}
 	{% for shipmentIn in lst %}
@@ -33,12 +32,11 @@ name goes here:	{{username}}
 		<td>{{shipmentIn.payment}}</td>
 		<td>{{shipmentIn.driver}}</td>
 		<td>{{shipmentIn.clientName}}</td>
-		<td>{{shipmentIn.purchaseOrder}}</td>
+		<td style = text-align:center> <button type = "button" onclick="window.location.href='/purchaseOrders/{{shipmentIn.purchaseOrder}}/';">View</button> </td>
 		<td>{{shipmentIn.street}}</td>
 		<td>{{shipmentIn.city}}</td>
 		<td>{{shipmentIn.state}}</td>
 		<td>{{shipmentIn.zipcode}}</td> 
-		<td style = text-align:center><button type="button" onclick="window.location.href='/employee/{{shipmentIn.shipID}}/';">Edit</button></td>
 	</tr>
 	{% endfor %}
 {% else %}
