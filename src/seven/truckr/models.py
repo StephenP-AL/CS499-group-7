@@ -37,7 +37,7 @@ class purchaseOrder(models.Model):
 
 class shipmentIn(models.Model):
     shipID = models.CharField(max_length = 10, primary_key = True)
-    clientID = models.IntegerField()
+    #clientID = models.IntegerField()
     vehID = models.IntegerField()
     departure = models.DateTimeField()
     estArrival = models.DateTimeField()
@@ -45,3 +45,8 @@ class shipmentIn(models.Model):
     payment = models.BooleanField()
     driver = models.IntegerField()
     purchaseOrder = models.IntegerField()
+    clientName = models.CharField(max_length = 20)
+    street = models.CharField(max_length = 30)
+    city = models.CharField(max_length = 30)
+    state = models.CharField(max_length = 2)
+    zipcode = models.CharField(max_length = 6)
