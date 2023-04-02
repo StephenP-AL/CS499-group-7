@@ -61,9 +61,6 @@ def signout(request):
     messages.success(request, "Logged Out Successfully")
     return redirect('home')
 
-
-
-
 def index(request):
     return HttpResponse("Truckr Index")
 
@@ -90,6 +87,22 @@ def purchaseOrderDetail(request, ID):
     return(render(request, 'truckr/purchaseOrdersDetail2.html', context))
 
 def shipmentsIn(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        pass1 = request.POST['pass1']
+
+        user = authenticate(username=username, password=pass1)
+
+        #if user exists, log them in, if not print error message and take back to home
+        if user is not None:
+            login(request, user)
+            fname = user.first_name
+            return render(request, "truckr/index.html", {'fname': fname})
+        
+        else:
+            messages.error(request, "Invalid Username add/or Password")
+            return redirect('home')
+
     lst = shipmentIn.objects.order_by("estArrival")
     context = {'lst':lst}
     return(render(request, 'truckr/shipmentsIn.html', context))
