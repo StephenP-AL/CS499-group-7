@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn
 
 
 # Create your views here.
@@ -88,4 +88,9 @@ def purchaseOrderDetail(request, ID):
 #inferior code    items = orderItem.objects.filter(purchaseOrderID = ID)
     context = {'items':items}
     return(render(request, 'truckr/purchaseOrdersDetail2.html', context))
+
+def shipmentsIn(request):
+    lst = shipmentIn.objects.order_by("estArrival")
+    context = {'lst':lst}
+    return(render(request, 'truckr/shipmentsIn.html', context))
 

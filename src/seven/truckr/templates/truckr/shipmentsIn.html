@@ -1,0 +1,49 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Shipment In</h2>
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+	       	<th>Vehicle</th>    
+		<th>Departure</th>
+	       	<th>Est. Arrival</th>  
+		<th>Arrived</th>
+		<th>Payment Received</th>
+		<th>Driver</th>
+		<th>Recipient</th>
+		<th>Purchase Order</th>
+		<th>Address</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Zip</th>
+		<th>Edit</th>
+       	</tr>
+{% if lst %}
+	{% for shipmentIn in lst %}
+	<tr>
+		<!--		<td><a href="/employee/{{employee.employeeID}}/">{{employee.employeeID}} </td>-->
+		<td>{{shipmentIn.shipID}}</td>
+		<td>{{shipmentIn.vehID}</td>
+		<td>{{shipmentIn.departure}}</td>
+		<td>{{shipmentIn.estArrival}}</td>
+		<td>{{shipmentIn.arrived}}</td>
+		<td>{{shipmentIn.payment}}</td>
+		<td>{{shipmentIn.driver}}</td>
+		<td>{{shipmentIn.clientName}}</td>
+		<td>{{shipmentIn.purchaseOrder}}</td>
+		<td>{{shipmentIn.street}}</td>
+		<td>{{shipmentIn.city}}</td>
+		<td>{{shipmentIn.state}}</td>
+		<td>{{shipmentIn.zipcode}}</td>
+		<td style = text-align:center><button type="button" onclick="window.location.href='/employee/{{shipmentIn.shipID}}/';">Edit</button></td>
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No shipments available</p>
+{% endif %}
+</table>
+</body>
+</html>
