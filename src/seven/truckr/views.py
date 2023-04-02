@@ -87,23 +87,10 @@ def purchaseOrderDetail(request, ID):
     return(render(request, 'truckr/purchaseOrdersDetail2.html', context))
 
 def shipmentsIn(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        pass1 = request.POST['pass1']
+    username = request.user.username
 
-        user = authenticate(username=username, password=pass1)
-
-        #if user exists, log them in, if not print error message and take back to home
-        if user is not None:
-            login(request, user)
-            fname = user.first_name
-            return render(request, "truckr/index.html", {'fname': fname})
-        
-        else:
-            messages.error(request, "Invalid Username add/or Password")
-            return redirect('home')
-
-    lst = shipmentIn.objects.order_by("estArrival")
+#    lst = shipmentIn.objects.raw("SELECT truckr_shipmentin.shipID, truckr_shipmentin.vehID, truckr_shipmentin.departure, truckr_shipmentin.estArrival, truckr_shipmentin.arrived, truckr_shipmentin.payment, truckr_shipmentin.driver, truckr_shipmentin.clientName, truckr_shipmentin.purchaseOrder, truckr_shipmentin.street, truckr_shipmentin.city, truckr_shipmentin.state, truckr_shipmentin.zipcode FROM truckr_shipmentin JOIN truckr_employee ON truckr_shipmentin.driver = truckr_employee.employeeID WHERE truckr_employee.username = '%s';",username )
+    lst = shipmentIn.objects.raw("SELECT * from truckr_shipmentin JOIN truckr_employee ON truckr_shipmentin.driver = truckr_employee.employeeID WHERE truckr_employee.username = '%s';" % username)
     context = {'lst':lst}
     return(render(request, 'truckr/shipmentsIn.html', context))
 
