@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut
 
 
 # Create your views here.
@@ -89,8 +89,16 @@ def purchaseOrderDetail(request, ID):
 def shipmentsIn(request):
     username = request.user.username
 
+# Probably unnecessary specificity
 #    lst = shipmentIn.objects.raw("SELECT truckr_shipmentin.shipID, truckr_shipmentin.vehID, truckr_shipmentin.departure, truckr_shipmentin.estArrival, truckr_shipmentin.arrived, truckr_shipmentin.payment, truckr_shipmentin.driver, truckr_shipmentin.clientName, truckr_shipmentin.purchaseOrder, truckr_shipmentin.street, truckr_shipmentin.city, truckr_shipmentin.state, truckr_shipmentin.zipcode FROM truckr_shipmentin JOIN truckr_employee ON truckr_shipmentin.driver = truckr_employee.employeeID WHERE truckr_employee.username = '%s';",username )
     lst = shipmentIn.objects.raw("SELECT * from truckr_shipmentin JOIN truckr_employee ON truckr_shipmentin.driver = truckr_employee.employeeID WHERE truckr_employee.username = '%s';" % username)
     context = {'lst':lst}
     return(render(request, 'truckr/shipmentsIn.html', context))
+
+def shipmentsOut(request):
+    username = request.user.username
+
+    lst = shipmentOut.objects.raw("SELECT * from truckr_shipmentout JOIN truckr_employee ON truckr_shipmentout.driver = truckr_employee.employeeID WHERE truckr_employee.username = '%s';" % username)
+    context = {'lst':lst}
+    return(render(request, 'truckr/shipmentsOut.html', context))
 
