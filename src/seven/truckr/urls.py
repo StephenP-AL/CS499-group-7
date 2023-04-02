@@ -9,6 +9,7 @@ from . import views
 urlpatterns = [
             #path('', views.index, name='index'),
             path('employees/', views.employees, name='employees'),
+            path('shipmentsIn/', views.shipmentsIn, name='shipmentsIn'),
             path('products/', views.products, name = 'products'),
             path('purchaseOrders/', views.purchaseOrders, name = 'purchaseOrders'),
             path('purchaseOrders/<int:ID>/', views.purchaseOrderDetail, name='purchaseOrderDetail'),

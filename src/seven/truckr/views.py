@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn
 
 
 # Create your views here.
@@ -61,9 +61,6 @@ def signout(request):
     messages.success(request, "Logged Out Successfully")
     return redirect('home')
 
-
-
-
 def index(request):
     return HttpResponse("Truckr Index")
 
@@ -88,4 +85,12 @@ def purchaseOrderDetail(request, ID):
 #inferior code    items = orderItem.objects.filter(purchaseOrderID = ID)
     context = {'items':items}
     return(render(request, 'truckr/purchaseOrdersDetail2.html', context))
+
+def shipmentsIn(request):
+    username = request.user.username
+
+#    lst = shipmentIn.objects.raw("SELECT truckr_shipmentin.shipID, truckr_shipmentin.vehID, truckr_shipmentin.departure, truckr_shipmentin.estArrival, truckr_shipmentin.arrived, truckr_shipmentin.payment, truckr_shipmentin.driver, truckr_shipmentin.clientName, truckr_shipmentin.purchaseOrder, truckr_shipmentin.street, truckr_shipmentin.city, truckr_shipmentin.state, truckr_shipmentin.zipcode FROM truckr_shipmentin JOIN truckr_employee ON truckr_shipmentin.driver = truckr_employee.employeeID WHERE truckr_employee.username = '%s';",username )
+    lst = shipmentIn.objects.raw("SELECT * from truckr_shipmentin JOIN truckr_employee ON truckr_shipmentin.driver = truckr_employee.employeeID WHERE truckr_employee.username = '%s';" % username)
+    context = {'lst':lst}
+    return(render(request, 'truckr/shipmentsIn.html', context))
 
