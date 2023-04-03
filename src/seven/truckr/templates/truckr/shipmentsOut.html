@@ -29,21 +29,21 @@
 		<th>Zip</th>
        	</tr>
 {% if lst %}
-	{% for shipmentIn in lst %}
+	{% for shipmentOut in lst %}
 	<tr>
-		<td>{{shipmentIn.shipID}}</td>
-		<td>{{shipmentIn.vehID}}</td>
-		<td>{{shipmentIn.departure}}</td>
-		<td>{{shipmentIn.estArrival}}</td>
-		<td>{{shipmentIn.arrived}}</td>
-		<td>{{shipmentIn.payment}}</td>
-		<td>{{shipmentIn.driver}}</td>
-		<td>{{shipmentIn.clientName}}</td>
-		<td style = text-align:center> <button type = "button" onclick="window.location.href='/purchaseOrders/{{shipmentIn.purchaseOrder}}/';">View</button> </td>
-		<td>{{shipmentIn.street}}</td>
-		<td>{{shipmentIn.city}}</td>
-		<td>{{shipmentIn.state}}</td>
-		<td>{{shipmentIn.zipcode}}</td> 
+		<td>{{shipmentOut.shipID}}</td>
+		<td>{{shipmentOut.vehID}}</td>
+		<td>{{shipmentOut.departure}}</td>
+		<td>{{shipmentOut.estArrival}}</td>
+		<td>{{shipmentOut.arrived}}</td>
+		<td>{{shipmentOut.payment}}</td>
+		<td>{{shipmentOut.driver}}</td>
+		<td>{{shipmentOut.clientName}}</td>
+		<td style = text-align:center> <button type = "button" onclick="window.location.href='/purchaseOrders/{{shipmentOut.purchaseOrder}}/';">View</button> </td>
+		<td>{{shipmentOut.street}}</td>
+		<td>{{shipmentOut.city}}</td>
+		<td>{{shipmentOut.state}}</td>
+		<td>{{shipmentOut.zipcode}}</td> 
 	</tr>
 	{% endfor %}
 {% else %}
