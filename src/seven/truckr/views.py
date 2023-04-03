@@ -4,13 +4,21 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar
 
 
 # Create your views here.
 #showes stuff to the webpage that the user can see
 def home(request):
-    return render(request, "truckr/index.html")
+    username = request.user.username
+    nav = navbar.objects.raw("""
+                SELECT * FROM truckr_employee 
+                JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID 
+                JOIN truckr_navbar ON truckr_account.accountType = truckr_navbar.accountType
+                WHERE truckr_employee.username = '%s';
+            """ % username)
+    return render(request, "truckr/index.html", {'nav': nav})
+    #return render(request, "truckr/index.html")
 
 def signup(request):
     #if we came here after pressing signup button, we get all the data from the form
@@ -48,7 +56,14 @@ def signin(request):
         if user is not None:
             login(request, user)
             fname = user.first_name
-            return render(request, "truckr/index.html", {'fname': fname})
+            nav = navbar.objects.raw("""
+                SELECT * FROM truckr_employee 
+                JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID 
+                JOIN truckr_navbar ON truckr_account.accountType = truckr_navbar.accountType
+                WHERE truckr_employee.username = '%s';
+            """ % username)
+            return render(request, "truckr/index.html", {'nav': nav})
+            #return render(request, "truckr/index.html", {'fname': fname})
         
         else:
             messages.error(request, "Invalid Username add/or Password")
