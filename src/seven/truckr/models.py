@@ -67,3 +67,7 @@ class shipmentOut(models.Model):
     city = models.CharField(max_length = 30)
     state = models.CharField(max_length = 2)
     zipcode = models.CharField(max_length = 6)
+
+class account(models.Model):
+    employeeID = models.IntegerField(primary_key = True)
+    accountType = models.CharField(max_length = 5)
