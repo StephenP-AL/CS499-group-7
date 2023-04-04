@@ -15,7 +15,8 @@ def home(request):
                 SELECT * FROM truckr_employee 
                 JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID 
                 JOIN truckr_navbar ON truckr_account.accountType = truckr_navbar.accountType
-                WHERE truckr_employee.username = '%s';
+                WHERE truckr_employee.username = '%s'
+                ORDER BY id;
             """ % username)
     return render(request, "truckr/index.html", {'nav': nav})
     #return render(request, "truckr/index.html")
@@ -60,7 +61,8 @@ def signin(request):
                 SELECT * FROM truckr_employee 
                 JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID 
                 JOIN truckr_navbar ON truckr_account.accountType = truckr_navbar.accountType
-                WHERE truckr_employee.username = '%s';
+                WHERE truckr_employee.username = '%s'
+                ORDER BY id;
             """ % username)
             return render(request, "truckr/index.html", {'nav': nav})
             #return render(request, "truckr/index.html", {'fname': fname})
