@@ -71,3 +71,8 @@ class shipmentOut(models.Model):
 class account(models.Model):
     employeeID = models.IntegerField(primary_key = True)
     accountType = models.CharField(max_length = 5)
+
+class navbar(models.Model):
+    accountType = models.CharField(max_length = 5)
+    text = models.CharField(max_length = 30)
+    url = models.CharField(max_length = 40)
