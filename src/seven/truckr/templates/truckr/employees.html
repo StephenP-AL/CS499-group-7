@@ -4,6 +4,18 @@
 	</style>
 <body>
 	<h2>Employees</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table style="width:100%">  
+	<tr>
+	{% for item in nav %}
+	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
 <table style="width:100%">  
        	<tr>    
 	       	<th>ID</th>    

@@ -8,7 +8,12 @@ from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, s
 
 
 # Create your views here.
+def navigation(username):
+    nav = navbar.objects.raw(""" SELECT * FROM truckr_employee JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID JOIN truckr_navbar ON truckr_account.accountType = truckr_navbar.accountType WHERE truckr_employee.username = '%s' ORDER BY id; """ % username)
+    return nav
 #showes stuff to the webpage that the user can see
+
+
 def home(request):
     username = request.user.username
     nav = navbar.objects.raw("""
@@ -56,16 +61,9 @@ def signin(request):
         #if user exists, log them in, if not print error message and take back to home
         if user is not None:
             login(request, user)
+            nav = navigation(username)
             fname = user.first_name
-            nav = navbar.objects.raw("""
-                SELECT * FROM truckr_employee 
-                JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID 
-                JOIN truckr_navbar ON truckr_account.accountType = truckr_navbar.accountType
-                WHERE truckr_employee.username = '%s'
-                ORDER BY id;
-            """ % username)
-            return render(request, "truckr/index.html", {'nav': nav})
-            #return render(request, "truckr/index.html", {'fname': fname})
+            return render(request, "truckr/index.html", {'nav': nav,'fname':fname})
         
         else:
             messages.error(request, "Invalid Username add/or Password")
@@ -82,14 +80,19 @@ def index(request):
     return HttpResponse("Truckr Index")
 
 def employees(request):
+    username = request.user.username
+    nav = navigation(username)
     elist = employee.objects.order_by('employeeID')
-    context = {'elist': elist}
-    return(render(request, 'truckr/employees.html', context))
+    context = {'elist': elist, 'nav': nav}
+    return render(request, 'truckr/employees.html', context)
 
 def products(request):
+    username = request.user.username
+    nav = navigation(username)
+
     plist = product.objects.order_by('productID')
-    context = {'plist': plist}
-    return(render(request, 'truckr/products.html', context))
+    context = {'plist': plist,'nav': nav}
+    return render(request, 'truckr/products.html', context)
 
 def purchaseOrders(request):
     polist  = purchaseOrder.objects.order_by('purchaseOrderID')
@@ -97,23 +100,27 @@ def purchaseOrders(request):
     return(render(request, 'truckr/purchaseOrders.html', context))
 
 def purchaseOrderDetail(request, ID):
+    username = request.user.username
+    nav = navigation(username)
+
     # Join the orderitem table with the product table to display product data for that order. Filters for a specific purchase order
     items = orderItem.objects.raw('SELECT truckr_orderitem.id as id, truckr_orderitem.purchaseOrderID as purchaseOrderID, truckr_orderitem.productID as productID, truckr_product.productName as productName, truckr_product.price as price, truckr_orderitem.quantity as quantity, truckr_orderitem.status as status FROM truckr_orderitem INNER JOIN truckr_product ON truckr_orderitem.productID = truckr_product.productID WHERE truckr_orderitem.purchaseOrderID = %s', [ID])
 #inferior code    items = orderItem.objects.filter(purchaseOrderID = ID)
-    context = {'items':items}
+    context = {'items':items,'nav':nav}
     return(render(request, 'truckr/purchaseOrdersDetail2.html', context))
 
 def shipmentsIn(request):
     username = request.user.username
+    nav = navigation(username)
 
     lst = shipmentIn.objects.raw("SELECT * from truckr_shipmentin JOIN truckr_employee ON truckr_shipmentin.driver = truckr_employee.employeeID WHERE truckr_employee.username = '%s';" % username)
-    context = {'lst':lst}
+    context = {'lst':lst,'nav': nav}
     return(render(request, 'truckr/shipmentsIn.html', context))
 
 def shipmentsOut(request):
     username = request.user.username
-
+    nav = navigation(username)
     lst = shipmentOut.objects.raw("SELECT * from truckr_shipmentout JOIN truckr_employee ON truckr_shipmentout.driver = truckr_employee.employeeID WHERE truckr_employee.username = '%s';" % username)
-    context = {'lst':lst}
+    context = {'lst':lst,'nav': nav}
     return(render(request, 'truckr/shipmentsOut.html', context))
 
