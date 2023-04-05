@@ -1,0 +1,50 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Manifest Detail</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
+{% if man %}
+	{% for m in man %}
+	Manifest ID: {{m.manifestID}}<br>
+	Shipping and handling: {{m.costShippingHandling}}<br>
+	{% endfor %}
+{% endif %}
+
+
+<table style="width:100%">  
+       	<tr>    
+	       	<th>Product ID</th>    
+	       	<th>Quantity</th>    
+		<th>Product Name</th>
+	       	<th>Price</th>    
+		<th>Total</th>
+       	</tr>
+{% if items%}
+	{% for item in items%}
+	<tr>
+		<td>{{item.productID}}</td>
+		<td>{{item.quantity}}</td>
+		<td>{{item.productName}}</td>
+		<td>{{item.price}}</td>
+		<td>{{item.total}}</td>
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No orders are available.</p>
+{% endif %}
+</table>
+</body>
+</html>
