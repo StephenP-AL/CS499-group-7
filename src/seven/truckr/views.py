@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem
 
 
 # Create your views here.
@@ -108,6 +108,15 @@ def purchaseOrderDetail(request, ID):
 #inferior code    items = orderItem.objects.filter(purchaseOrderID = ID)
     context = {'items':items,'nav':nav}
     return(render(request, 'truckr/purchaseOrdersDetail2.html', context))
+
+def manifestDetail(request,ID):
+    username = request.user.username
+    nav = navigation(username)
+    man = manifest.objects.raw('SELECT * FROM truckr_manifest WHERE manifestID = %s;', [ID])
+    items = manifestItem.objects.raw('SELECT id, truckr_manifestitem.manifestID as manifestID, truckr_manifestitem.productID as productID,truckr_manifestitem.quantity as quantity, truckr_product.price as price, truckr_product.productName as productName, ROUND(truckr_product.price * truckr_manifestitem.quantity,2) as total FROM truckr_manifestitem JOIN truckr_product ON truckr_manifestitem.productID = truckr_product.productID WHERE manifestID = %s;', [ID])
+    context = {'nav':nav,'man':man, 'items':items}
+    return(render(request,'truckr/manifestDetail.html', context))
+
 
 def shipmentsIn(request):
     username = request.user.username

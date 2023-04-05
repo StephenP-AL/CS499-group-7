@@ -28,6 +28,7 @@
 		<th>Driver</th>
 		<th>Recipient</th>
 		<th>Purchase Order</th>
+		<th>Manifest</th>
 		<th>Address</th>
 		<th>City</th>
 		<th>State</th>
@@ -45,6 +46,7 @@
 		<td>{{shipmentOut.driver}}</td>
 		<td>{{shipmentOut.clientName}}</td>
 		<td style = text-align:center> <button type = "button" onclick="window.location.href='/purchaseOrders/{{shipmentOut.purchaseOrder}}/';">View</button> </td>
+		<td style = text-align:center> <button type = "button" onclick="window.location.href='/manifestDetail/{{shipmentOut.manifest}}/';">View</button> </td>
 		<td>{{shipmentOut.street}}</td>
 		<td>{{shipmentOut.city}}</td>
 		<td>{{shipmentOut.state}}</td>
