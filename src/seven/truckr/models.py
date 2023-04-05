@@ -35,6 +35,15 @@ class purchaseOrder(models.Model):
     purchaseOrderID = models.IntegerField(primary_key = True)
     costShippingHandling = models.DecimalField(max_digits = 10, decimal_places = 2)
 
+class manifest(models.Model):
+    manifestID = models.IntegerField(primary_key = True)
+    costShippingHandling = models.DecimalField(max_digits = 10, decimal_places = 2)
+
+class manifestItem(models.Model):
+    manifestID = models.IntegerField()
+    productID = models.IntegerField()
+    quantity = models.IntegerField()
+
 class shipmentIn(models.Model):
     shipID = models.CharField(max_length = 10, primary_key = True)
     #clientID = models.IntegerField()
@@ -76,3 +85,4 @@ class navbar(models.Model):
     accountType = models.CharField(max_length = 5)
     text = models.CharField(max_length = 30)
     url = models.CharField(max_length = 40)
+
