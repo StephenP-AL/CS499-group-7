@@ -1,0 +1,65 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Shipment In</h2>
+
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+	       	<th>Vehicle</th>    
+		<th>Departure</th>
+	       	<th>Est. Arrival</th>  
+		<th>Arrived</th>
+		<th>Payment Received</th>
+		<th>Driver</th>
+		<th>Recipient</th>
+		<th>Purchase Order</th>
+		<th>Manifest</th>
+		<th>Address</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Zip</th>
+		<th>Edit</th>
+       	</tr>
+{% if lst %}
+	{% for shipmentOut in lst %}
+	<tr>
+		<td>{{shipmentOut.shipID}}</td>
+		<td>{{shipmentOut.vehID}}</td>
+		<td>{{shipmentOut.departure}}</td>
+		<td>{{shipmentOut.estArrival}}</td>
+		<td>{{shipmentOut.arrived}}</td>
+		<td>{{shipmentOut.payment}}</td>
+		<td>{{shipmentOut.driver}}</td>
+		<td>{{shipmentOut.clientName}}</td>
+		<td style = text-align:center> <button type = "button" onclick="window.location.href='/purchaseOrders/{{shipmentOut.purchaseOrder}}/';">View</button> </td>
+		<td style = text-align:center> <button type = "button" onclick="window.location.href='/manifestDetail/{{shipmentOut.manifest}}/';">View</button> </td>
+		<td>{{shipmentOut.street}}</td>
+		<td>{{shipmentOut.city}}</td>
+		<td>{{shipmentOut.state}}</td>
+		<td>{{shipmentOut.zipcode}}</td> 
+		<td style = text-align:center> <button type = "button" onclick="window.location.href='/admin/truckr/shipmentout/{{shipmentOut.shipID}}';">Edit</button> </td>
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No shipments available. Make sure you are signed in.</p>
+{% endif %}
+</table>
+<br>
+<button type="button" onclick="window.location.href='/admin/truckr/shipmentout/add/';">Add Outgoing Shipment</button>
+</body>
+</html>

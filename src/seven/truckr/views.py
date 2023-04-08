@@ -145,3 +145,12 @@ def manageShipmentsIn(request):
     lst = shipmentIn.objects.raw("SELECT * from truckr_shipmentin JOIN truckr_employee ON truckr_shipmentin.driver = truckr_employee.employeeID;")
     context = {'lst':lst,'nav': nav}
     return(render(request, 'truckr/manageShipmentsIn.html', context))
+
+def manageShipmentsOut(request):
+    username = request.user.username
+    nav = navigation(username)
+
+    lst = shipmentIn.objects.raw("SELECT * from truckr_shipmentout JOIN truckr_employee ON truckr_shipmentout.driver = truckr_employee.employeeID;")
+
+    context = {'lst':lst,'nav': nav}
+    return(render(request, 'truckr/manageShipmentsOut.html', context))
