@@ -20,5 +20,6 @@ urlpatterns = [
             path('signout', views.signout, name="signout"),
             path('admin/', admin.site.urls),
             path('manifestDetail/<int:ID>/', views.manifestDetail, name='manifestDetail'),
+            path('manageShipmentsIn', views.manageShipmentsIn, name = 'manageShipmentsIn'),
             
             ]

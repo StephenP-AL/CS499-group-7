@@ -1,0 +1,58 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Shipment In</h2>
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+	       	<th>Vehicle</th>    
+		<th>Departure</th>
+	       	<th>Est. Arrival</th>  
+		<th>Arrived</th>
+		<th>Payment Received</th>
+		<th>Driver</th>
+		<th>Recipient</th>
+		<th>Purchase Order</th>
+		<th>Address</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Zip</th>
+		<th>Edit</th>
+       	</tr>
+{% if lst %}
+	{% for shipmentIn in lst %}
+	<tr>
+		<td>{{shipmentIn.shipID}}</td>
+		<td>{{shipmentIn.vehID}}</td>
+		<td>{{shipmentIn.departure}}</td>
+		<td>{{shipmentIn.estArrival}}</td>
+		<td>{{shipmentIn.arrived}}</td>
+		<td>{{shipmentIn.payment}}</td>
+		<td>{{shipmentIn.driver}}</td>
+		<td>{{shipmentIn.clientName}}</td>
+		<td style = text-align:center> <button type = "button" onclick="window.location.href='/purchaseOrders/{{shipmentIn.purchaseOrder}}/';">View</button> </td>
+		<td>{{shipmentIn.street}}</td>
+		<td>{{shipmentIn.city}}</td>
+		<td>{{shipmentIn.state}}</td>
+		<td>{{shipmentIn.zipcode}}</td> 
+		<td style = text-align:center> <button type = "button" onclick="window.location.href='/admin/truckr/shipmentin/{{shipmentIn.shipID}}/change/';">Edit</button> </td>
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No shipments available. Make sure you are signed in.</p>
+{% endif %}
+</table>
+</body>
+</html>

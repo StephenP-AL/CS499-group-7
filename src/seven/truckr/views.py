@@ -121,6 +121,7 @@ def manifestDetail(request,ID):
     return(render(request,'truckr/manifestDetail.html', context))
 
 
+#Driver views
 def shipmentsIn(request):
     username = request.user.username
     nav = navigation(username)
@@ -136,3 +137,11 @@ def shipmentsOut(request):
     context = {'lst':lst,'nav': nav}
     return(render(request, 'truckr/shipmentsOut.html', context))
 
+#Shipping manager views
+def manageShipmentsIn(request):
+    username = request.user.username
+    nav = navigation(username)
+
+    lst = shipmentIn.objects.raw("SELECT * from truckr_shipmentin JOIN truckr_employee ON truckr_shipmentin.driver = truckr_employee.employeeID;")
+    context = {'lst':lst,'nav': nav}
+    return(render(request, 'truckr/manageShipmentsIn.html', context))
