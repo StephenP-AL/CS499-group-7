@@ -95,8 +95,11 @@ def products(request):
     return render(request, 'truckr/products.html', context)
 
 def purchaseOrders(request):
+    username = request.user.username
+    nav = navigation(username)
+
     polist  = purchaseOrder.objects.order_by('purchaseOrderID')
-    context = {'polist':polist}
+    context = {'polist':polist,'nav': nav}
     return(render(request, 'truckr/purchaseOrders.html', context))
 
 def purchaseOrderDetail(request, ID):
