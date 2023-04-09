@@ -6,7 +6,7 @@
 	<h2>Purchase Order Detail</h2>
 <!-- Navigation bar -->
 {% if nav %}
-<table style="width:100%">  
+<table>  
 	<tr>
 	{% for item in nav %}
 	<th><a href='{{item.url}}'>{{item.text}}</a></th>
@@ -16,30 +16,39 @@
 <br>
 {% endif %}
 
+
+	{% for order in po %}
+		ID: {{order.purchaseOrderID}} <br>
+		Shipping and handling: {{order.costShippingHandling}}	
+	{% endfor %}
+	<br>
+
+	<br>
 <table style="width:100%">  
        	<tr>    
-	       	<th>Purchase Order</th>    
 	       	<th>Product</th>    
-	       	<th>Quantity</th>    
 		<th>Product Name</th>
+	       	<th>Quantity</th>    
 	       	<th>Price</th>    
 	       	<th>Status</th>    
+		<th>Edit</th>
        	</tr>
 {% if items%}
 	{% for item in items%}
 	<tr>
-		<!--		<td><a href="/order/{{order.orderID}}/">{{order.orderID}} </td>-->
-		<td>{{item.purchaseOrderID}}</td>
 		<td>{{item.productID}}</td>
-		<td>{{item.quantity}}</td>
 		<td>{{item.productName}}</td>
+		<td>{{item.quantity}}</td>
 		<td>{{item.price}}</td>
 		<td>{{item.status}}</td>
+		<td style = text-align:center> <button type="button" onclick="window.location.href='/admin/truckr/orderitem/{{item.productID}}/change/';">Edit</button></td>
 	</tr>
 	{% endfor %}
 {% else %}
 	<p>No orders are available.</p>
 {% endif %}
 </table>
+<br>
+<button type="button" onclick="window.location.href='/admin/truckr/orderitem/add/';">Add Item</button>
 </body>
 </html>

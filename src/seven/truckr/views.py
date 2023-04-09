@@ -105,11 +105,12 @@ def purchaseOrders(request):
 def purchaseOrderDetail(request, ID):
     username = request.user.username
     nav = navigation(username)
+    po = purchaseOrder.objects.raw('SELECT * FROM truckr_purchaseorder WHERE purchaseOrderID = %s;',[ID])
 
     # Join the orderitem table with the product table to display product data for that order. Filters for a specific purchase order
     items = orderItem.objects.raw('SELECT truckr_orderitem.id as id, truckr_orderitem.purchaseOrderID as purchaseOrderID, truckr_orderitem.productID as productID, truckr_product.productName as productName, truckr_product.price as price, truckr_orderitem.quantity as quantity, truckr_orderitem.status as status FROM truckr_orderitem INNER JOIN truckr_product ON truckr_orderitem.productID = truckr_product.productID WHERE truckr_orderitem.purchaseOrderID = %s', [ID])
-#inferior code    items = orderItem.objects.filter(purchaseOrderID = ID)
-    context = {'items':items,'nav':nav}
+
+    context = {'items':items,'nav':nav, 'po':po}
     return(render(request, 'truckr/purchaseOrdersDetail2.html', context))
 
 def manifestDetail(request,ID):
