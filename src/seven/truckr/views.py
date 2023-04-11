@@ -157,4 +157,13 @@ def manageShipmentsOut(request):
     return(render(request, 'truckr/manageShipmentsOut.html', context))
 
 def vehicles(request):
+    username = request.user.username
+    nav = navigation(username)
+    lst = vehicle.objects.raw("SELECT * FROM truckr_vehicle;")
+
+    context = {'lst':lst,'nav': nav}
+    return(render(request, 'truckr/vehicles.html', context))
+
+
+
     return HttpResponse("Vehicle page")

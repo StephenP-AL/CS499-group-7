@@ -1,0 +1,54 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Vehicles</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+	       	<th>Make</th>    
+	       	<th>Model</th>  
+		<th>Year</th>
+		<th>Vehicle Type</th>
+		<th>Load Capacity</th>
+		<th>Height</th>
+		<th>Parts List</th>
+       	</tr>
+{% if lst %}
+	{% for vehicle in lst %}
+	<tr>
+		<td>{{vehicle.vehID}}</td>
+		<td>{{vehicle.make}}</td>
+		<td>{{vehicle.model}}</td>
+		<td>{{vehicle.year}}</td>
+		<td>{{vehicle.vehType}}</td>
+		<td>{{vehicle.loadCapacity}}</td>
+		<td>{{vehicle.height}}</td>
+		<td>{{vehicle.partsList}}</td>
+		<!--
+		<td style = text-align:center><button type="button" onclick="window.location.href='/admin/truckr/vehicle/{{vehicle.vehicleID}}/change/';">Edit</button></td>
+		-->
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No vehicles are available.</p>
+{% endif %}
+
+</table>
+<br>
+<button type="button" onclick="window.location.href='/admin/truckr/vehicle/add/';">Add Vehicle</button>
+</body>
+</html>
