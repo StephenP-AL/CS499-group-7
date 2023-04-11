@@ -22,4 +22,5 @@ urlpatterns = [
             path('manifestDetail/<int:ID>/', views.manifestDetail, name='manifestDetail'),
             path('manageShipmentsIn', views.manageShipmentsIn, name = 'manageShipmentsIn'),
             path('manageShipmentsOut', views.manageShipmentsOut, name = 'manageShipmentsOut'),
+            path('vehicles', views.vehicles, name = 'vehicles'),
             ]
