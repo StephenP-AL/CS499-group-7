@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList
 
 
 # Create your views here.
@@ -155,3 +155,6 @@ def manageShipmentsOut(request):
 
     context = {'lst':lst,'nav': nav}
     return(render(request, 'truckr/manageShipmentsOut.html', context))
+
+def vehicles(request):
+    return HttpResponse("Vehicle page")

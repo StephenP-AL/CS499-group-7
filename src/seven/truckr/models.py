@@ -81,8 +81,30 @@ class account(models.Model):
     employeeID = models.IntegerField(primary_key = True)
     accountType = models.CharField(max_length = 5)
 
+class vehicle(models.Model):
+    vehID = models.IntegerField(primary_key = True)
+    make = models.CharField(max_length  = 20)
+    model = models.CharField(max_length = 20)
+    year = models.IntegerField()
+    vehType = models.CharField(max_length = 20)
+    loadCapacity = models.IntegerField()
+    height = models.IntegerField()
+    partsList = models.IntegerField()
+
+class part(models.Model):
+    partID = models.IntegerField(primary_key = True)
+    onHand = models.IntegerField()
+    partName = models.CharField(max_length = 30)
+
+class partsList(models.Model):
+    listID = models.IntegerField()
+    partID = models.IntegerField()
+    source = models.CharField(max_length = 30)
+    cost = models.DecimalField(max_digits = 10, decimal_places = 2)
+
 class navbar(models.Model):
     accountType = models.CharField(max_length = 5)
     text = models.CharField(max_length = 30)
     url = models.CharField(max_length = 40)
+
 
