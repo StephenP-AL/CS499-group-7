@@ -23,6 +23,7 @@ urlpatterns = [
             path('manageShipmentsIn', views.manageShipmentsIn, name = 'manageShipmentsIn'),
             path('manageShipmentsOut', views.manageShipmentsOut, name = 'manageShipmentsOut'),
             path('vehicles', views.vehicles, name = 'vehicles'),
-            path('maintenance', views.maintenanceview, name = 'maintenance'),
             path('vehiclesDetail/<int:ID>/', views.vehiclesDetail, name = 'vehiclesDetail'),
+            path('maintenance', views.maintenanceview, name = 'maintenance'),
+            path('maintenanceDetail/<int:ID>/', views.maintenanceDetail, name = 'maintenanceDetail'),
             ]

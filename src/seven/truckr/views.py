@@ -169,7 +169,8 @@ def vehiclesDetail(request, ID):
     nav = navigation(username)
     veh = vehicle.objects.raw("SELECT * FROM truckr_vehicle WHERE vehID = %s;", [ID] )
     parts = vehicle.objects.raw("SELECT * FROM truckr_vehicle JOIN truckr_partslist ON truckr_vehicle.partsList = truckr_partslist.listID JOIN truckr_part ON truckr_partslist.partID = truckr_part.partID WHERE truckr_vehicle.vehID = %s;", [ID])
-    context = {'veh': veh, 'nav': nav, 'parts':parts}
+    maint = maintenance.objects.raw("SELECT * FROM truckr_maintenance WHERE vehID = %s;",[ID] )
+    context = {'veh': veh, 'nav': nav, 'parts':parts, 'maint':maint,}
     return(render(request, 'truckr/vehiclesDetail.html', context))
 
 def maintenanceview(request):
@@ -181,4 +182,11 @@ def maintenanceview(request):
     return(render(request, 'truckr/maintenance.html', context))
 
 
+def maintenanceDetail(request, ID):
+    username = request.user.username
+    nav = navigation(username)
+    maint = maintenance.objects.raw("SELECT * FROM truckr_maintenance JOIN truckr_vehicle ON truckr_maintenance.vehID = truckr_vehicle.vehID WHERE truckr_maintenance.maintID = %s;", [ID])
+    parts = maintenance.objects.raw("SELECT * FROM truckr_maintenance JOIN truckr_partslist ON truckr_maintenance.partsList = truckr_partslist.listID JOIN truckr_part ON truckr_partslist.partID = truckr_part.partID WHERE truckr_maintenance.maintID = %s;", [ID])
+    context = {'nav':nav,'maint':maint, 'parts':parts}
+    return(render(request, 'truckr/maintenanceDetail.html', context))
 
