@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList,maintenance
 
 
 # Create your views here.
@@ -164,6 +164,21 @@ def vehicles(request):
     context = {'lst':lst,'nav': nav}
     return(render(request, 'truckr/vehicles.html', context))
 
+def vehiclesDetail(request, ID):
+    username = request.user.username
+    nav = navigation(username)
+    veh = vehicle.objects.raw("SELECT * FROM truckr_vehicle WHERE vehID = %s;", [ID] )
+    parts = vehicle.objects.raw("SELECT * FROM truckr_vehicle JOIN truckr_partslist ON truckr_vehicle.partsList = truckr_partslist.listID JOIN truckr_part ON truckr_partslist.partID = truckr_part.partID WHERE truckr_vehicle.vehID = %s;", [ID])
+    context = {'veh': veh, 'nav': nav, 'parts':parts}
+    return(render(request, 'truckr/vehiclesDetail.html', context))
+
+def maintenanceview(request):
+    username = request.user.username
+    nav = navigation(username)
+    lst = maintenance.objects.raw("SELECT * FROM truckr_maintenance;")
+
+    context = {'lst':lst,'nav': nav}
+    return(render(request, 'truckr/maintenance.html', context))
 
 
-    return HttpResponse("Vehicle page")
+

@@ -102,6 +102,13 @@ class partsList(models.Model):
     source = models.CharField(max_length = 30)
     cost = models.DecimalField(max_digits = 10, decimal_places = 2)
 
+class maintenance(models.Model):
+    maintID = models.IntegerField(primary_key = True)
+    vehID = models.IntegerField()
+    description = models.CharField(max_length = 30)
+    completed = models.DateTimeField()
+    partsList = models.IntegerField()
+
 class navbar(models.Model):
     accountType = models.CharField(max_length = 5)
     text = models.CharField(max_length = 30)
