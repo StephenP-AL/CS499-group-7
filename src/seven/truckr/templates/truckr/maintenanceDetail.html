@@ -1,0 +1,83 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Maintenance Detail</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
+
+	{% for v in maint %}
+	Maintenance ID: {{v.vehID}}  <br>
+	Vehicle Type: {{v.vehType}} <br>
+	Vehicle Description: {{v.year}} - {{v.make}} - {{v.model}} <br> <br>
+	Maintenance Performed: {{v.description}} <br>
+	Completed: {{v.completed}}
+
+
+	{% endfor %}
+	<br>
+
+	<br>
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+		<th>Source</th>
+	       	<th>Cost</th>    
+	       	<th>On Hand</th>    
+	       	<th>Part Name</th>    
+		<th>Edit</th>
+       	</tr>
+{% if parts%}
+	{% for item in parts%}
+	<tr>
+		<td>{{item.partID}}</td>
+		<td>{{item.source}}</td>
+		<td>{{item.cost}}</td>
+		<td>{{item.onHand}}</td>
+		<td>{{item.partName}}</td>
+		<td style = text-align:center> <button type="button" onclick="window.location.href='/admin/truckr/partslist/{{item.id}}/change/';">Edit</button></td>
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No parts are available.</p>
+{% endif %}
+</table>
+
+<br>
+<button type="button" onclick="window.location.href='/admin/truckr/partslist/add/';">Add Part</button>
+
+<br>
+<br>
+<!--
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+		<th>Description</th>
+		<th>Completed</th>
+		<th>Detail</th>
+	</tr>
+{% if maint %}
+
+{% for m in maint %}
+	<tr>
+		<td>{{m.maintID}}</td>
+		<td>{{m.description}}</td>
+		<td>{{m.completed}}</td>
+	</tr>	
+{% endfor %}
+{% endif %}
+</table>
+-->
+</body>
+</html>
