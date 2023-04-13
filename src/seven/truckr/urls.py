@@ -23,4 +23,5 @@ urlpatterns = [
             path('manageShipmentsIn', views.manageShipmentsIn, name = 'manageShipmentsIn'),
             path('manageShipmentsOut', views.manageShipmentsOut, name = 'manageShipmentsOut'),
             path('vehicles', views.vehicles, name = 'vehicles'),
+            path('maintenance', views.maintenanceview, name = 'maintenance'),
             ]

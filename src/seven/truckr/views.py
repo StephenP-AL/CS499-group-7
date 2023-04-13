@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList,maintenance
 
 
 # Create your views here.
@@ -164,6 +164,13 @@ def vehicles(request):
     context = {'lst':lst,'nav': nav}
     return(render(request, 'truckr/vehicles.html', context))
 
+def maintenanceview(request):
+    username = request.user.username
+    nav = navigation(username)
+    lst = maintenance.objects.raw("SELECT * FROM truckr_maintenance;")
+
+    context = {'lst':lst,'nav': nav}
+    return(render(request, 'truckr/maintenance.html', context))
 
 
-    return HttpResponse("Vehicle page")
+
