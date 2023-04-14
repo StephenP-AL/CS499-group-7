@@ -190,3 +190,11 @@ def maintenanceDetail(request, ID):
     context = {'nav':nav,'maint':maint, 'parts':parts}
     return(render(request, 'truckr/maintenanceDetail.html', context))
 
+def maintenanceReport(request, year, month):
+    username = request.user.username
+    nav = navigation(username)
+    yrmo = str(year)+ '-' + str('{:02d}'.format(month) + '%')
+    
+    maint = maintenance.objects.raw("SELECT * FROM truckr_maintenance WHERE completed LIKE '%s';" % yrmo)
+    context = {'nav':nav,'maint':maint}
+    return(render(request, 'truckr/maintenanceReport.html', context))
