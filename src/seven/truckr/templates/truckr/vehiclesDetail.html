@@ -25,7 +25,7 @@ Description: {{v.year}} - {{v.make}} - {{v.model}} <br>
 	{% endfor %}
 	<br>
 
-	<br>
+	<h3>Parts List</h3>
 <table style="width:100%">  
        	<tr>    
 	       	<th>ID</th>    
@@ -55,6 +55,7 @@ Description: {{v.year}} - {{v.make}} - {{v.model}} <br>
 
 <br>
 <br>
+<h3>Maintenance Services</h3>
 
 <table style="width:100%">  
        	<tr>    
@@ -70,9 +71,14 @@ Description: {{v.year}} - {{v.make}} - {{v.model}} <br>
 		<td>{{m.maintID}}</td>
 		<td>{{m.description}}</td>
 		<td>{{m.completed}}</td>
+		<td style = text-align:center><button type="button" onclick="window.location.href='/maintenanceDetail/{{m.maintID}}/';">Details</button></td>
 	</tr>	
 {% endfor %}
 {% endif %}
 </table>
+<br>
+
+<button type="button" onclick="window.location.href='/admin/truckr/maintenance/add/';">Add Service</button>
+<br>
 </body>
 </html>
