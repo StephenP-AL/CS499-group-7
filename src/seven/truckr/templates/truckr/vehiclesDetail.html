@@ -70,9 +70,14 @@ Description: {{v.year}} - {{v.make}} - {{v.model}} <br>
 		<td>{{m.maintID}}</td>
 		<td>{{m.description}}</td>
 		<td>{{m.completed}}</td>
+		<td style = text-align:center><button type="button" onclick="window.location.href='/maintenanceDetail/{{m.maintID}}/';">Details</button></td>
 	</tr>	
 {% endfor %}
 {% endif %}
 </table>
+<br>
+
+<button type="button" onclick="window.location.href='/admin/truckr/maintenance/add/';">Add Service</button>
+<br>
 </body>
 </html>

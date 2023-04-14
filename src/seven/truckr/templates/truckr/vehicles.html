@@ -25,7 +25,7 @@
 		<th>Vehicle Type</th>
 		<th>Load Capacity</th>
 		<th>Height</th>
-		<th>Parts List</th>
+		<th>Details</th>
        	</tr>
 {% if lst %}
 	{% for vehicle in lst %}
@@ -37,10 +37,7 @@
 		<td>{{vehicle.vehType}}</td>
 		<td>{{vehicle.loadCapacity}}</td>
 		<td>{{vehicle.height}}</td>
-		<td>{{vehicle.partsList}}</td>
-		<!--
-		<td style = text-align:center><button type="button" onclick="window.location.href='/admin/truckr/vehicle/{{vehicle.vehicleID}}/change/';">Edit</button></td>
-		-->
+		<td style = text-align:center><button type="button" onclick="window.location.href='/vehiclesDetail/{{vehicle.vehID}}/';">Details</button></td>
 	</tr>
 	{% endfor %}
 {% else %}

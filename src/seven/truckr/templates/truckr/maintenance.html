@@ -13,9 +13,8 @@
 	{% endfor %}
 	</tr>
 </table>
-<br>
 {% endif %}
-
+<h3> Services </h3>
 <table style="width:100%">  
        	<tr>    
 	       	<th>ID</th>    
@@ -31,10 +30,7 @@
 		<td>{{maint.vehID}}</td>
 		<td>{{maint.description}}</td>
 		<td>{{maint.completed}}</td>
-		<td>{{maint.partsList}}</td>
-		<!--
-		<td style = text-align:center><button type="button" onclick="window.location.href='/admin/truckr/vehicle/{{vehicle.vehicleID}}/change/';">Edit</button></td>
-		-->
+		<td style = text-align:center><button type="button" onclick="window.location.href='/maintenanceDetail/{{maint.maintID}}/';">Details</button></td>
 	</tr>
 	{% endfor %}
 {% else %}
@@ -43,6 +39,6 @@
 
 </table>
 <br>
-<button type="button" onclick="window.location.href='/admin/truckr/vehicle/add/';">Add Vehicle</button>
+<button type="button" onclick="window.location.href='/admin/truckr/maintenance/add/';">Add Service</button>
 </body>
 </html>

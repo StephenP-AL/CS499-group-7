@@ -22,6 +22,7 @@
 	Vehicle Type: {{v.vehType}} <br>
 	Vehicle Description: {{v.year}} - {{v.make}} - {{v.model}} <br> <br>
 	Maintenance Performed: {{v.description}} <br>
+	Parts List ID: {{v.partsList}} <br>
 	Completed: {{v.completed}}
 
 
@@ -29,6 +30,10 @@
 	<br>
 
 	<br>
+{% if parts%}
+<h3>
+Parts List <br>
+</h3>
 <table style="width:100%">  
        	<tr>    
 	       	<th>ID</th>    
@@ -38,7 +43,6 @@
 	       	<th>Part Name</th>    
 		<th>Edit</th>
        	</tr>
-{% if parts%}
 	{% for item in parts%}
 	<tr>
 		<td>{{item.partID}}</td>
