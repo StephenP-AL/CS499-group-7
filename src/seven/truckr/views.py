@@ -190,3 +190,12 @@ def maintenanceDetail(request, ID):
     context = {'nav':nav,'maint':maint, 'parts':parts}
     return(render(request, 'truckr/maintenanceDetail.html', context))
 
+def maintenanceReport(request, year, month):
+    username = request.user.username
+    nav = navigation(username)
+    yr = str(year)
+    mo = str('{:02d}'.format(month))
+    
+    maint = maintenance.objects.raw("SELECT * FROM maintenance_rpt_bymonth WHERE yr = '{}' and mo = '{}';".format(yr,mo))
+    context = {'nav':nav,'maint':maint}
+    return(render(request, 'truckr/maintenanceReport.html', context))

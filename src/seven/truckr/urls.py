@@ -26,4 +26,5 @@ urlpatterns = [
             path('vehiclesDetail/<int:ID>/', views.vehiclesDetail, name = 'vehiclesDetail'),
             path('maintenance', views.maintenanceview, name = 'maintenance'),
             path('maintenanceDetail/<int:ID>/', views.maintenanceDetail, name = 'maintenanceDetail'),
+            path('maintenanceReport/<int:year>/<int:month>/', views.maintenanceReport, name = 'maintenanceReport'),
             ]
