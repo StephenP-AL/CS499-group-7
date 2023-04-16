@@ -19,28 +19,20 @@
 <table style="width:100%">  
        	<tr>    
 	       	<th>ID</th>    
-		<!--
-	       	<th>First Name</th>    
-		<th>Middle Name</th>
-	       	<th>Last Name</th>  
-		<th>username</th>
-		<th>Address</th>
-		<th>City</th>
-		<th>State</th>
-		<th>Zip</th>
-		<th>Home Phone</th>
-		<th>Cell Phone</th>
-		<th>Pay</th>
-		<th>Start Date</th>
-		<th>Edit</th>
-		-->
+	       	<th>Vehicle</th>    
+		<th>Description</th>
+	       	<th>Completed</th>  
+		<th>Total Cost</th>
        	</tr>
 
 		{% if maint %}
-		this
 		{% for m in maint %}
 			<tr>
 				<td>{{m.maintID}}</td>
+				<td>{{m.vehID}}</td>
+				<td>{{m.description}}</td>
+				<td>{{m.completed}}</td>
+				<td>{{m.total}}</td>
 			</tr>
 
 		{% endfor %}
@@ -50,6 +42,8 @@
 
 		</table>
 <br>
+<!--
 <button type="button" onclick="window.location.href='/admin/truckr/m.add/';">Add Employee</button>
+-->
 </body>
 </html>
