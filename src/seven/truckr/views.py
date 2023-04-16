@@ -83,7 +83,8 @@ def employees(request):
     username = request.user.username
     nav = navigation(username)
     elist = employee.objects.order_by('employeeID')
-    context = {'elist': elist, 'nav': nav}
+    filt = employee.objects.raw("SELECT truckr_account.employeeID,username,accountType FROM truckr_employee JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID WHERE accountType = 'full' and username = '{}';".format(username))
+    context = {'elist': elist, 'nav': nav,'filt':filt}
     return render(request, 'truckr/employees.html', context)
 
 def products(request):
