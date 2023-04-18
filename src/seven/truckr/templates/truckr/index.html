@@ -31,6 +31,7 @@
       <img src="{% static 'image/TruckrLogo.png' %}" alt="Truckr Logo" style="width:200px;" />
     </div>
 
+<div style="display: flex; justify-content: center;">
 <!-- Navigation bar -->
 {% if nav %}
 <table>  
@@ -45,6 +46,7 @@
 	</tr>
 </table>
 {% endif %}
+</div>
     <!--Prints the users name in welcome mssg-->
     {% if user.is_authenticated %}
     <h3 style="text-align: center;">Hello {{ fname }}</h3>
