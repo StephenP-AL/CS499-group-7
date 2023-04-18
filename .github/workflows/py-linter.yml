@@ -13,7 +13,7 @@ jobs:
     - name: Set up Python $PY_VERSION
       uses: actions/setup-python@v3
       with:
-        python-version: $PY_VERSION
+        python-version: ${PY_VERSION}
     - name: Update and install pylint dependencies
       run: |
         python3 -m pip install --upgrade pip
