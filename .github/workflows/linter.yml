@@ -3,7 +3,7 @@ name: Pylint
 on: [push]
 
 jobs:
-  build:
+  SAST:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -14,10 +14,10 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+    - name: Update and install pylint dependencies
       run: |
         python3 -m pip install --upgrade pip
         pip install pylint
-    - name: Analysing the code with pylint
+    - name: Analyse the code with pylint
       run: |
         pylint $(git ls-files '*.py')
