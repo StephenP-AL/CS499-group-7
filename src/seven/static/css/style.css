@@ -152,19 +152,4 @@ h6 {
  margin-top: 20px; /* adjust the margin as needed */
 }
 
-/*for the logo image*/
-img {
- width: 50px; /* adjust the width as needed */
- max-width: 100%;
- height:auto; /* adjust the height as needed */
- display: block; /* make the image a block-level element for easier positioning */
- margin: 0 auto; /* center the image horizontally */
- position: absolute;
- bottom: 0;
- right: 0;
- border: 3px solid #ccc;
- border-radius: 8px;
-
-}
-
-  table, th, td {   border:1px solid black; } 
+table, th, td {   border:1px solid black; } 

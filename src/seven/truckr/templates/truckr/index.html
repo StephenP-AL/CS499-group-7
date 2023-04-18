@@ -27,8 +27,9 @@
     {% endfor %}
 
     <h3 style="text-align: center;">Welcome to Truckr</h3>
-    
-    <img src="{% static 'image/TruckrLogo.png' %}" alt="Truckr Logo">
+    <div style="display:flex; justify-content:center; margin-bottom:24px;">
+      <img src="{% static 'image/TruckrLogo.png' %}" alt="Truckr Logo" style="width:200px;" />
+    </div>
 
 {% if nav %}
 <table>  
@@ -44,10 +45,6 @@
     <h3 style="text-align: center;">Hello {{ fname }}</h3>
     <h4 style="text-align: center;">You're successfully logged in</h4>
     <button type="submit"><a href="/signout"> SignOut</a></button>
-
-    <!-- We add this somewhere else?-->
-    <button type="submit"><a href="/purchaseOrders"> Purchase Orders</a></button>
-    <button type="submit"><a href="/employees"> Employees</a></button>
 
 
 
