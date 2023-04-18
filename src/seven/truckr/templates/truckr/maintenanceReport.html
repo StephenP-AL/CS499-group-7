@@ -1,0 +1,49 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Maintenance Report</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+	       	<th>Vehicle</th>    
+		<th>Description</th>
+	       	<th>Completed</th>  
+		<th>Total Cost</th>
+       	</tr>
+
+		{% if maint %}
+		{% for m in maint %}
+			<tr>
+				<td>{{m.maintID}}</td>
+				<td>{{m.vehID}}</td>
+				<td>{{m.description}}</td>
+				<td>{{m.completed}}</td>
+				<td>{{m.total}}</td>
+			</tr>
+
+		{% endfor %}
+		{% else %}
+		No maintenance completed in selected month
+		{% endif %}
+
+		</table>
+<br>
+<!--
+<button type="button" onclick="window.location.href='/admin/truckr/m.add/';">Add Employee</button>
+-->
+</body>
+</html>

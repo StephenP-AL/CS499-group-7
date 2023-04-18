@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList,maintenance
 
 
 # Create your views here.
@@ -83,7 +83,8 @@ def employees(request):
     username = request.user.username
     nav = navigation(username)
     elist = employee.objects.order_by('employeeID')
-    context = {'elist': elist, 'nav': nav}
+    filt = employee.objects.raw("SELECT truckr_account.employeeID,username,accountType FROM truckr_employee JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID WHERE accountType = 'full' and username = '{}';".format(username))
+    context = {'elist': elist, 'nav': nav,'filt':filt}
     return render(request, 'truckr/employees.html', context)
 
 def products(request):
@@ -164,6 +165,48 @@ def vehicles(request):
     context = {'lst':lst,'nav': nav}
     return(render(request, 'truckr/vehicles.html', context))
 
+def vehiclesDetail(request, ID):
+    username = request.user.username
+    nav = navigation(username)
+    veh = vehicle.objects.raw("SELECT * FROM truckr_vehicle WHERE vehID = %s;", [ID] )
+    parts = vehicle.objects.raw("SELECT * FROM truckr_vehicle JOIN truckr_partslist ON truckr_vehicle.partsList = truckr_partslist.listID JOIN truckr_part ON truckr_partslist.partID = truckr_part.partID WHERE truckr_vehicle.vehID = %s;", [ID])
+    maint = maintenance.objects.raw("SELECT * FROM truckr_maintenance WHERE vehID = %s;",[ID] )
+    context = {'veh': veh, 'nav': nav, 'parts':parts, 'maint':maint,}
+    return(render(request, 'truckr/vehiclesDetail.html', context))
+
+def maintenanceview(request):
+    username = request.user.username
+    nav = navigation(username)
+    lst = maintenance.objects.raw("SELECT * FROM truckr_maintenance;")
+
+    context = {'lst':lst,'nav': nav}
+    return(render(request, 'truckr/maintenance.html', context))
 
 
-    return HttpResponse("Vehicle page")
+def maintenanceDetail(request, ID):
+    username = request.user.username
+    nav = navigation(username)
+    maint = maintenance.objects.raw("SELECT * FROM truckr_maintenance JOIN truckr_vehicle ON truckr_maintenance.vehID = truckr_vehicle.vehID WHERE truckr_maintenance.maintID = %s;", [ID])
+    parts = maintenance.objects.raw("SELECT * FROM truckr_maintenance JOIN truckr_partslist ON truckr_maintenance.partsList = truckr_partslist.listID JOIN truckr_part ON truckr_partslist.partID = truckr_part.partID WHERE truckr_maintenance.maintID = %s;", [ID])
+    context = {'nav':nav,'maint':maint, 'parts':parts}
+    return(render(request, 'truckr/maintenanceDetail.html', context))
+
+def maintenanceReport(request, year, month):
+    username = request.user.username
+    nav = navigation(username)
+    yr = str(year)
+    mo = str('{:02d}'.format(month))
+    
+    maint = maintenance.objects.raw("SELECT * FROM maintenance_rpt_bymonth WHERE yr = '{}' and mo = '{}';".format(yr,mo))
+    context = {'nav':nav,'maint':maint}
+    return(render(request, 'truckr/maintenanceReport.html', context))
+
+def maintenanceReportList(request):
+    username = request.user.username
+    nav = navigation(username)
+    
+    maint = maintenance.objects.raw("SELECT * FROM maintenance_rpt_list;")
+    context = {'nav':nav,'maint':maint}
+    return(render(request, 'truckr/maintenanceReportList.html', context))
+
+

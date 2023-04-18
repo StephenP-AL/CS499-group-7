@@ -23,4 +23,9 @@ urlpatterns = [
             path('manageShipmentsIn', views.manageShipmentsIn, name = 'manageShipmentsIn'),
             path('manageShipmentsOut', views.manageShipmentsOut, name = 'manageShipmentsOut'),
             path('vehicles', views.vehicles, name = 'vehicles'),
+            path('vehiclesDetail/<int:ID>/', views.vehiclesDetail, name = 'vehiclesDetail'),
+            path('maintenance', views.maintenanceview, name = 'maintenance'),
+            path('maintenanceDetail/<int:ID>/', views.maintenanceDetail, name = 'maintenanceDetail'),
+            path('maintenanceReport/', views.maintenanceReportList, name = 'maintenanceReportList'),
+            path('maintenanceReport/<int:year>/<int:month>/', views.maintenanceReport, name = 'maintenanceReport'),
             ]

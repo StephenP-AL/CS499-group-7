@@ -1,0 +1,40 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Employees</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
+<table style="width:100%">  
+       	<tr>    
+	       	<th>Year</th>    
+	       	<th>Month</th>    
+		<th>Select</th>
+       	</tr>
+{% if maint %}
+	{% for m in maint %}
+	<tr>
+		<!--		<td><a href="/employee/{{employee.employeeID}}/">{{employee.employeeID}} </td>-->
+		<td>{{m.yr}}</td>
+		<td>{{m.mo}}</td>
+		<td style = text-align:center><button type="button" onclick="window.location.href='/maintenanceReport/{{m.yr}}/{{m.mo}}/';">Edit</button></td>
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No reports are available.</p>
+{% endif %}
+
+</table>
+</body>
+</html>

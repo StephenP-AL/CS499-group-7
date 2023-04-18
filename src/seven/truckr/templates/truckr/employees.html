@@ -26,6 +26,8 @@
 <br>
 {% endif %}
 
+
+
 <table style="width:100%">  
        	<tr>    
 	       	<th>ID</th>    
@@ -43,6 +45,7 @@
 		<th>Start Date</th>
 		<th>Edit</th>
        	</tr>
+{% if filt %}
 {% if elist %}
 	{% for employee in elist %}
 	<tr>
@@ -67,6 +70,7 @@
 	<p>No employees are available.</p>
 {% endif %}
 
+{% endif %}
 </table>
 <br>
 <button type="button" onclick="window.location.href='/admin/truckr/employee/add/';">Add Employee</button>

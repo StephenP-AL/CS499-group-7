@@ -1,0 +1,45 @@
+<html>
+	<style> 
+	table, th, td {   border:1px solid black; } 	
+	</style>
+<body>
+	<h2>Maintenance</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+	{% endfor %}
+	</tr>
+</table>
+{% endif %}
+<h3> Services </h3>
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+	       	<th>Vehicle</th>    
+	       	<th>Description</th>  
+		<th>Completed</th>
+		<th>Parts List</th>
+       	</tr>
+{% if lst %}
+	{% for maint in lst %}
+	<tr>
+		<td>{{maint.maintID}}</td>
+		<td>{{maint.vehID}}</td>
+		<td>{{maint.description}}</td>
+		<td>{{maint.completed}}</td>
+		<td style = text-align:center><button type="button" onclick="window.location.href='/maintenanceDetail/{{maint.maintID}}/';">Details</button></td>
+	</tr>
+	{% endfor %}
+{% else %}
+	<p>No vehicles are available.</p>
+{% endif %}
+
+</table>
+<br>
+<button type="button" onclick="window.location.href='/admin/truckr/maintenance/add/';">Add Service</button>
+<button type="button" onclick="window.location.href='/maintenanceReport/';">Monthly Maintenance Reports</button>
+</body>
+</html>
