@@ -6,7 +6,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Authentication</title>
+    <title>Home</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
@@ -45,15 +45,15 @@
     <h3 style="text-align: center;">Hello {{ fname }}</h3>
     <h4 style="text-align: center;">You're successfully logged in</h4>
     <div class="button-container">
-      <button type="submit" style="display: flex; justify-content:center;"><a href="/signout"> Sign Out</a></button>
+      <button type="submit" style="display: flex; justify-content:center; margin:20px;"><a href="/signout"> Sign Out</a></button>
     </div>
 
 
     <!--If not authenticated, give option to signup/in-->
     {% else %}
     <div class="button-container">
-      <button type="submit"> <a href="/signup"> Sign Up</a></button>
-      <button type="submit"><a href="/signin"> Sign In</a></button>
+      <button type="submit" style="margin:20px; margin-bottom:0px; "><a href="/signup"> Sign Up</a></button>
+      <button type="submit" style="margin:20px;"><a href="/signin"> Sign In</a></button>
     </div>
     {% endif %}
     

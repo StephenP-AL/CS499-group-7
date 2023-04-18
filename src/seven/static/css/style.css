@@ -5,7 +5,15 @@ body {
   color:#e6e6e6;
   margin: 0;
   padding: 0;
+  margin-left:1em;
+  margin-right:1em;
 }
+
+a {
+  color:#4CAF50;
+}
+
+a
 
 /* Sign in/up form*/
 form {
@@ -101,7 +109,7 @@ border-radius: 3px;
 color: #fff;
 cursor: pointer;
 font-size: 16px;
-margin-top: 20px;
+margin: 7px;
 padding: 10px 20px;
 text-align: center;
 text-decoration: none;
@@ -125,18 +133,18 @@ text-decoration: none;
 
 /*style the buttons into a container*/
 .button-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-background-color: #f4f4f4;
-border: 1px solid #ccc; /* Add a 1-pixel wide solid black border */
-padding: 20px; /* Add some padding around the container */
-box-sizing: border-box; /* Include the padding in the container's width and height */
-max-width: 500px; /* Set a maximum width for the container */
-margin: 0 auto; /* Center the container horizontally using margin auto */
-border-radius: 10px; /* Add a 10px border radius to create rounded edges */
+  background-color: #f4f4f4;
+  border: 1px solid #ccc; /* Add a 1-pixel wide solid black border */
+  padding: 0px; /* Add some padding around the container */
+  box-sizing: border-box; /* Include the padding in the container's width and height */
+  max-width: 500px; /* Set a maximum width for the container */
+  margin: 0 auto; /* Center the container horizontally using margin auto */
+  border-radius: 10px; /* Add a 10px border radius to create rounded edges */
 }
 
 
@@ -153,4 +161,11 @@ h6 {
  margin-top: 20px; /* adjust the margin as needed */
 }
 
-table, th, td {   border:1px solid black; } 
+table, th, td {   
+  border:1px solid black; 
+} 
+
+th, td {
+  margin-left: 5px;
+  padding: 5px;
+}
