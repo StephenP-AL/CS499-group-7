@@ -2,21 +2,37 @@ name: Pylint
 
 on: [push]
 
+env:
+  PY_VERSION: "3.8"
+
 jobs:
   python-linter:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.8"]
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python $PY_VERSION
       uses: actions/setup-python@v3
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: $PY_VERSION
     - name: Update and install pylint dependencies
       run: |
         python3 -m pip install --upgrade pip
         pip install pylint
     - name: Analyse the code with pylint
       run: pylint $(git ls-files '*.py')
+
+  sql-linter:
+    runs-on: ubuntu-latest
+    env:
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python $PY_VERSION
+      - uses: actions/setup-python@v3
+        with:
+            python-version: $PY_VERSION
+      - name: Update and install SQLFluff dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install sqlfluff
+      - name: Lint models
+        run: sqlfluff lint $(git ls-files '*.sql') --dialect sqlite
