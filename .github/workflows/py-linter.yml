@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python $PY_VERSION
-    - uses: actions/setup-python@v3
+      uses: actions/setup-python@v3
       with:
         python-version: $PY_VERSION
     - name: Update and install pylint dependencies
@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python $PY_VERSION
-      - uses: actions/setup-python@v3
+        uses: actions/setup-python@v3
         with:
             python-version: $PY_VERSION
       - name: Update and install SQLFluff dependencies
