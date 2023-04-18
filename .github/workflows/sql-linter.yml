@@ -1,6 +1,6 @@
 name: SQLFluff
 
-on: [pull_request]
+on: [push]
 
 jobs:
   sql-linter:
