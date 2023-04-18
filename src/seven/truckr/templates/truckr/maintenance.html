@@ -19,7 +19,11 @@
 <table>  
 	<tr>
 	{% for item in nav %}
-	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+		{% if item.url == request.get_full_path %}
+			<th><a href='{{item.url}}' style="color:#c6f8b7">{{item.text}}</a></th>
+		{% else %}
+			<th><a href='{{item.url}}'>{{item.text}}</a></th>
+		{% endif %}
 	{% endfor %}
 	</tr>
 </table>
@@ -51,5 +55,6 @@
 <br>
 <button type="button" onclick="window.location.href='/admin/truckr/maintenance/add/';">Add Service</button>
 <button type="button" onclick="window.location.href='/maintenanceReport/';">Monthly Maintenance Reports</button>
+
 </body>
 </html>

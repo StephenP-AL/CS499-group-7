@@ -6,20 +6,24 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Employees</title>
+    <title>Maintenance Report</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
     <link rel="icon" type="png" href="{% static 'image/TruckrIcon.png'%}">
   </head>
 <body>
-	<h2>Employees</h2>
+	<h2>Maintenance Report</h2>
 <!-- Navigation bar -->
 {% if nav %}
 <table>  
 	<tr>
 	{% for item in nav %}
-	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+		{% if item.url == request.get_full_path %}
+			<th><a href='{{item.url}}' style="color:#c6f8b7">{{item.text}}</a></th>
+		{% else %}
+			<th><a href='{{item.url}}'>{{item.text}}</a></th>
+		{% endif %}
 	{% endfor %}
 	</tr>
 </table>
