@@ -1,9 +1,10 @@
-name: Pylint
+name: Linter
 
 on: [push]
 
 env:
   PY_VERSION: "3.8"
+  PIP_INSTALL: "python3 -m pip install --upgrade pip"
 
 jobs:
   python-linter:
@@ -16,7 +17,7 @@ jobs:
         python-version: ${{env.PY_VERSION}}
     - name: Update and install pylint dependencies
       run: |
-        python3 -m pip install --upgrade pip
+        ${{env.PIP_INSTALL}}
         pip install pylint
     - name: Analyse the code with pylint
       run: pylint $(git ls-files '*.py')
@@ -31,7 +32,7 @@ jobs:
             python-version: ${{env.PY_VERSION}}
       - name: Update and install SQLFluff dependencies
         run: |
-          python3 -m pip install --upgrade pip
+          ${{env.PIP_INSTALL}}
           pip install sqlfluff
       - name: Lint models
         run: sqlfluff lint $(git ls-files '*.sql') --dialect sqlite
