@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
-    <link rel="icon" type="png" href={% static 'image/TruckrLogo.png'%}>
+    <link rel="icon" type="png" href="{% static 'image/TruckrIcon.png'%}">
   </head>
   <body>
 
@@ -26,9 +26,9 @@
     </div>
     {% endfor %}
 
-    <h3>Welcome to Truckr</h3>
+    <h3 style="text-align: center;">Welcome to Truckr</h3>
     
-
+    <img src="{% static 'img/TruckrLogo.png' %}" alt="Truckr Logo">
 
 {% if nav %}
 <table>  
@@ -41,9 +41,11 @@
 {% endif %}
     <!--Prints the users name in welcome mssg-->
     {% if user.is_authenticated %}
-    <h3>Hello {{ fname }}</h3>
-    <h4>You're successfully logged in</h4>
+    <h3 style="text-align: center;">Hello {{ fname }}</h3>
+    <h4 style="text-align: center;">You're successfully logged in</h4>
     <button type="submit"><a href="/signout"> SignOut</a></button>
+
+    <!-- We add this somewhere else?-->
     <button type="submit"><a href="/purchaseOrders"> Purchase Orders</a></button>
     <button type="submit"><a href="/employees"> Employees</a></button>
 
@@ -51,8 +53,10 @@
 
     <!--If not authenticated, give option to signup/in-->
     {% else %}
-    <button type="submit"> <a href="/signup"> SignUp</a></button>
-    <button type="submit"><a href="/signin"> SignIn</a></button>
+    <div class="button-container">
+      <button type="submit"> <a href="/signup"> SignUp</a></button>
+      <button type="submit"><a href="/signin"> SignIn</a></button>
+    </div>
     {% endif %}
     
 
