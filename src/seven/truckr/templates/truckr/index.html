@@ -44,15 +44,16 @@
     {% if user.is_authenticated %}
     <h3 style="text-align: center;">Hello {{ fname }}</h3>
     <h4 style="text-align: center;">You're successfully logged in</h4>
-    <button type="submit"><a href="/signout"> SignOut</a></button>
-
+    <div class="button-container">
+      <button type="submit" style="display: flex; justify-content:center;"><a href="/signout"> Sign Out</a></button>
+    </div>
 
 
     <!--If not authenticated, give option to signup/in-->
     {% else %}
     <div class="button-container">
-      <button type="submit"> <a href="/signup"> SignUp</a></button>
-      <button type="submit"><a href="/signin"> SignIn</a></button>
+      <button type="submit"> <a href="/signup"> Sign Up</a></button>
+      <button type="submit"><a href="/signin"> Sign In</a></button>
     </div>
     {% endif %}
     
