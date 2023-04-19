@@ -4,6 +4,8 @@ from .models import employee,product,orderItem,purchaseOrder,shipmentIn,shipment
 class adminEmployee(admin.ModelAdmin):
     list_display = ['username','lName','fName','mName']
 
+admin.site.site_header = "Truckr Administration"
+
 # Register your models here.
 
 admin.site.register(employee,adminEmployee)
