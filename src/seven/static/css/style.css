@@ -1,77 +1,169 @@
 
-/*login page*/
-
 body {
-    font-family: Arial, sans-serif;
-  }
-  
-  form {
-    margin: 20px auto;
-    width: 400px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  form label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  form input {
-    display: block;
-    margin-bottom: 10px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  form button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .alert {
-    margin: 20px auto;
-    width: 400px;
-    padding: 20px;
-    border-radius: 5px;
-  }
-  
-  .alert.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-  }
-  
-  .alert.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-  }
-  
-  .alert .close {
-    position: relative;
-    top: -5px;
-    right: -10px;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 20px;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    opacity: 0.5;
-    cursor: pointer;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #313131;
+  color:#e6e6e6;
+  margin: 0;
+  padding: 0;
+  margin-left:1em;
+  margin-right:1em;
+}
 
-  table, th, td {   border:1px solid black; } 
+a {
+  color:#4CAF50;
+}
+
+/* Sign in/up form*/
+form {
+  margin: 20px auto;
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+ }
+ 
+ form label {
+  display: block;
+  margin-bottom: 5px;
+ }
+ 
+ form input {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+ }
+ 
+ form button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+ }
+ 
+ .alert {
+  margin: 20px auto;
+  width: 400px;
+  padding: 20px;
+  border-radius: 5px;
+ }
+ 
+ .alert.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+ }
+ 
+ .alert.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+ }
+ 
+ .alert .close {
+  position: relative;
+  top: -5px;
+  right: -10px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 20px;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+  cursor: pointer;
+ }
+
+/* Style the welcome message */
+h3 {
+font-size: 24px;
+margin-top: 40px;
+}
+/* Style the authenticated user's welcome message */
+h3 + h3 {
+font-size: 28px;
+margin-top: 20px;
+}
+/* Style the "successfully logged in" message */
+h4 {
+font-size: 20px;
+margin-top: 20px;
+}
+
+/* Style the buttons */
+button {
+background-color: #4CAF50;
+border: none;
+border-radius: 3px;
+color: #fff;
+cursor: pointer;
+font-size: 16px;
+margin: 7px;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+}
+
+
+button:hover {
+background-color: #3a833c;
+}
+
+/* Style the links inside the buttons */
+button a {
+color: #fff;
+text-decoration: none;
+}
+
+button a:hover {
+color: #fff;
+text-decoration: none;
+}
+
+/*style the buttons into a container*/
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #f4f4f4;
+  border: 1px solid #ccc; /* Add a 1-pixel wide solid black border */
+  padding: 0px; /* Add some padding around the container */
+  box-sizing: border-box; /* Include the padding in the container's width and height */
+  max-width: 500px; /* Set a maximum width for the container */
+  margin: 0 auto; /* Center the container horizontally using margin auto */
+  border-radius: 10px; /* Add a 10px border radius to create rounded edges */
+}
+
+
+/*for the signin pg*/
+h5 {
+ font-size: 2em; /* adjust the font size as needed */
+ text-align: center;
+ margin-top: 20px; /* adjust the margin as needed */
+}
+/*for the signup pg*/
+h6 {
+ font-size: 2em; /* adjust the font size as needed */
+ text-align: center;
+ margin-top: 20px; /* adjust the margin as needed */
+}
+
+table, th, td {   
+  border:1px solid black; 
+} 
+
+th, td {
+  margin-left: 5px;
+  padding: 5px;
+}
