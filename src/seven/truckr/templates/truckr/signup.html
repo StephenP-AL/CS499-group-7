@@ -6,15 +6,15 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Authentication</title>
+    <title>Sign Up</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
-
+    <link rel="icon" type="png" href="{% static 'image/TruckrIcon.png'%}">
   </head>
   <body>
 
-    <h3>Sign Up</h3>
+    <h3 style="text-align: center;">Sign Up</h3>
     <!--A form to create a new account-->
     <form action="/signup" method="post">
         {% csrf_token %}

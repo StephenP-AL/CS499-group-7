@@ -6,10 +6,11 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Authentication</title>
+    <title>Home</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+    <link rel="icon" type="png" href="{% static 'image/TruckrIcon.png'%}">
   </head>
   <body>
 
@@ -25,35 +26,44 @@
     </div>
     {% endfor %}
 
-    <h3>Welcome to Truckr</h3>
-    
+    <h3 style="text-align: center;">Welcome to Truckr</h3>
+    <div style="display:flex; justify-content:center; margin-bottom:24px;">
+      <img src="{% static 'image/TruckrLogo.png' %}" alt="Truckr Logo" style="width:200px;" />
+    </div>
 
-
+<div style="display: flex; justify-content: center;">
+<!-- Navigation bar -->
 {% if nav %}
 <table>  
 	<tr>
 	{% for item in nav %}
-	<th><a href='{{item.url}}'>{{item.text}}</a></th>
+		{% if item.url == request.get_full_path %}
+			<th><a href='{{item.url}}' style="color:#c6f8b7">{{item.text}}</a></th>
+		{% else %}
+			<th><a href='{{item.url}}'>{{item.text}}</a></th>
+		{% endif %}
 	{% endfor %}
 	</tr>
 </table>
 {% endif %}
+</div>
     <!--Prints the users name in welcome mssg-->
     {% if user.is_authenticated %}
-    <h3>Hello {{ fname }}</h3>
-    <h4>You're successfully logged in</h4>
-    <button type="submit"><a href="/signout"> SignOut</a></button>
-    <button type="submit"><a href="/purchaseOrders"> Purchase Orders</a></button>
-    <button type="submit"><a href="/employees"> Employees</a></button>
-
+    <h3 style="text-align: center;">Hello {{ fname }}</h3>
+    <h4 style="text-align: center;">You're successfully logged in</h4>
+    <div class="button-container">
+      <button type="submit" style="display: flex; justify-content:center; margin:20px;"><a href="/signout"> Sign Out</a></button>
+    </div>
 
 
     <!--If not authenticated, give option to signup/in-->
     {% else %}
-    <button type="submit"> <a href="/signup"> SignUp</a></button>
-    <button type="submit"><a href="/signin"> SignIn</a></button>
+    <div class="button-container">
+      <button type="submit" style="margin:20px; margin-bottom:0px; "><a href="/signup"> Sign Up</a></button>
+      <button type="submit" style="margin:20px;"><a href="/signin"> Sign In</a></button>
+    </div>
     {% endif %}
-    
+
 
 	<script src="" async defer></script>
   </body>
