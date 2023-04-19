@@ -209,4 +209,11 @@ def maintenanceReportList(request):
     context = {'nav':nav,'maint':maint}
     return(render(request, 'truckr/maintenanceReportList.html', context))
 
-
+def vehicleReport(request, ID):
+    username = request.user.username
+    nav = navigation(username)
+    veh = vehicle.objects.raw("SELECT * FROM truckr_vehicle WHERE vehID = %s;", [ID]) 
+    maint = maintenance.objects.raw("SELECT * FROM maintenance_rpt_bymonth WHERE vehID = %s;", [ID])
+    context = {'nav':nav,'maint':maint,'veh':veh,'ID':ID}
+    return(render(request,'truckr/vehicleReport.html',context))
+    
