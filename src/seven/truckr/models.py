@@ -115,3 +115,7 @@ class navbar(models.Model):
     url = models.CharField(max_length = 40)
 
 
+class yearmonth(models.Model):
+    year = models.CharField(max_length = 4)
+    month = models.CharField(max_length = 2)
+    period = models.CharField(max_length = 6, primary_key = True)
