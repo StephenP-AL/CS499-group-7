@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList,maintenance
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList,maintenance,yearmonth
 
 
 # Create your views here.
@@ -226,6 +226,14 @@ def payReport(request, year, month):
     total = employee.objects.raw("SELECT truckr_account.employeeID, sum(pay) as total FROM payReport JOIN truckr_account ON payReport.ID = truckr_account.employeeID WHERE (yr||mo) <= '{}';".format(period))
     elst = employee.objects.raw("SELECT * FROM payReport JOIN truckr_account ON payReport.ID = truckr_account.employeeID WHERE (yr||mo) <= '{}';".format(period))
     filt = employee.objects.raw("SELECT truckr_account.employeeID,username,accountType FROM truckr_employee JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID WHERE accountType = 'full' and username = '{}';".format(username))
-#    context = {'nav':nav, 'total':total,'filt':filt,'lst':lst}
     context = {'nav':nav, 'total':total,'filt':filt,'elst':elst}
     return(render(request,'truckr/payReport.html',context))
+
+def payReportList(request):
+    username = request.user.username
+    nav = navigation(username)
+    lst = yearmonth.objects.raw("SELECT * FROM truckr_yearmonth WHERE period <= strftime('%Y%m',date()) ORDER BY period DESC;")
+    context = {'nav':nav,'lst':lst}
+    return(render(request,'truckr/payReportList.html',context))
+
+    

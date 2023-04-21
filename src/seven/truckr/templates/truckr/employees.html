@@ -28,8 +28,10 @@
 	</tr>
 </table>
 {% endif %}
-
-
+<br>
+<button type="button" onclick="window.location.href='/payReport/';">Payroll Reports</button>
+<br>
+<br>
 
 <table style="width:100%">  
        	<tr>    
@@ -52,7 +54,6 @@
 {% if elist %}
 	{% for employee in elist %}
 	<tr>
-		<!--		<td><a href="/employee/{{employee.employeeID}}/">{{employee.employeeID}} </td>-->
 		<td>{{employee.employeeID}}</td>
 		<td>{{employee.fName}}</td>
 		<td>{{employee.mName}}</td>
