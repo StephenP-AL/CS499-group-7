@@ -216,4 +216,16 @@ def vehicleReport(request, ID):
     maint = maintenance.objects.raw("SELECT * FROM maintenance_rpt_bymonth WHERE vehID = %s;", [ID])
     context = {'nav':nav,'maint':maint,'veh':veh,'ID':ID}
     return(render(request,'truckr/vehicleReport.html',context))
-    
+ 
+def payReport(request, year, month):
+    username = request.user.username
+    nav = navigation(username)
+   
+    period = str(year) + str('{:02d}'.format(month))
+    print('*' * 12,period)
+    total = employee.objects.raw("SELECT truckr_account.employeeID, sum(pay) as total FROM payReport JOIN truckr_account ON payReport.ID = truckr_account.employeeID WHERE (yr||mo) <= '{}';".format(period))
+    elst = employee.objects.raw("SELECT * FROM payReport JOIN truckr_account ON payReport.ID = truckr_account.employeeID WHERE (yr||mo) <= '{}';".format(period))
+    filt = employee.objects.raw("SELECT truckr_account.employeeID,username,accountType FROM truckr_employee JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID WHERE accountType = 'full' and username = '{}';".format(username))
+#    context = {'nav':nav, 'total':total,'filt':filt,'lst':lst}
+    context = {'nav':nav, 'total':total,'filt':filt,'elst':elst}
+    return(render(request,'truckr/payReport.html',context))
