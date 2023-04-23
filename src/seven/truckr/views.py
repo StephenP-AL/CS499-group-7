@@ -236,4 +236,11 @@ def payReportList(request):
     context = {'nav':nav,'lst':lst}
     return(render(request,'truckr/payReportList.html',context))
 
-    
+def shipReport(request,year,month):
+    username = request.user.username
+    nav = navigation(username)
+    period = str(year) + str('{:02d}'.format(month))
+    print(period,'*' * 20)
+    inlist = shipmentIn.objects.raw("select shipID, strftime('%Y%m',departure) as period, strftime('%Y',departure) as year, strftime('%m', departure) as month, strftime('%d', departure) as day, arrived,payment, clientName, costShippingHandling, productTotal FROM truckr_shipmentin join truckr_purchaseorder on truckr_shipmentin.purchaseOrder = truckr_purchaseorder.purchaseOrderID join vw_purchaseOrderTotal on truckr_shipmentin.purchaseOrder = vw_purchaseOrderTotal.purchaseOrderID WHERE period = '{}' ;".format(period))
+    context = {'nav':nav,'inlist':inlist}
+    return(render(request,'truckr/shipReport.html',context))

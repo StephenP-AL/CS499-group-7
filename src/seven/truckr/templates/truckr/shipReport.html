@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Shipment Report</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+    <link rel="icon" type="png" href="{% static 'image/TruckrIcon.png'%}">
+  </head>
+<body>
+	<h2>Shipment Report</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+		{% if item.url == request.get_full_path %}
+			<th><a href='{{item.url}}' style="color:#c6f8b7">{{item.text}}</a></th>
+		{% else %}
+			<th><a href='{{item.url}}'>{{item.text}}</a></th>
+		{% endif %}
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
+<!--
+{% if total %}
+	{% for i in total %}
+	<h4>	Total Payroll: ${{i.total}}</h4>
+	{% endfor %}
+{% endif %}
+-->
+
+<h3>Incoming Shipments</h3>
+<table style="width:100%">  
+       	<tr>    
+	       	<th>ID</th>    
+		<th>Year</th>
+	       	<th>Month</th>  
+		<th>Day</th>
+		<th>Arrived</th>
+		<th>Payment</th>
+		<th>Client</th>
+		<th>Shipping and Handling</th>
+		<th>Cost of Products</th>
+       	</tr>
+
+	{% if inlist %}
+		{% for i in inlist %}
+			<tr>
+				<td>{{i.shipID}}</td>
+				<td>{{i.year}}</td>
+				<td>{{i.month}}</td>
+				<td>{{i.day}}</td>
+				<td>{{i.arrived}}</td>
+				<td>{{i.payment}}</td>
+				<td>{{i.clientName}}</td>
+				<td>${{i.costShippingHandling}}</td>
+				<td>${{i.productTotal}}</td>
+			</tr>
+
+		{% endfor %}
+		{% else %}
+		No records for selected month
+	{% endif %}
+		</table>
+<br>
+<!--
+<button type="button" onclick="window.location.href='/admin/truckr/m.add/';">Add Employee</button>
+-->
+</body>
+</html>
