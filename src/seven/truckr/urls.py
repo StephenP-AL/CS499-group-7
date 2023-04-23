@@ -30,5 +30,6 @@ urlpatterns = [
             path('maintenanceReport/<int:year>/<int:month>/', views.maintenanceReport, name = 'maintenanceReport'),
             path('vehicleReport/<int:ID>/', views.vehicleReport, name = 'vehicleReport'),
             path('payReport/<int:year>/<int:month>/',views.payReport, name = 'payReport'),
-            path('payReport/',views.payReportList, name = 'payReportList')
+            path('payReport/',views.payReportList, name = 'payReportList'),
+            path('shipReport/<int:year>/<int:month>/',views.shipReport, name = 'shipReport')
             ]
