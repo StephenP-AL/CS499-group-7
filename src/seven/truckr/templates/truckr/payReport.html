@@ -30,6 +30,7 @@
 <br>
 {% endif %}
 
+{% if filt %}
 {% if total %}
 	{% for i in total %}
 	<h4>	Total Payroll: ${{i.total}}</h4>
@@ -59,6 +60,7 @@
 		No records for selected month
 	{% endif %}
 		</table>
+		{% endif %}
 <br>
 <!--
 <button type="button" onclick="window.location.href='/admin/truckr/m.add/';">Add Employee</button>
