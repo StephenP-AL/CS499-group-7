@@ -240,7 +240,15 @@ def shipReport(request,year,month):
     username = request.user.username
     nav = navigation(username)
     period = str(year) + str('{:02d}'.format(month))
-    print(period,'*' * 20)
     inlist = shipmentIn.objects.raw("select shipID, strftime('%Y%m',departure) as period, strftime('%Y',departure) as year, strftime('%m', departure) as month, strftime('%d', departure) as day, arrived,payment, clientName, costShippingHandling, productTotal FROM truckr_shipmentin join truckr_purchaseorder on truckr_shipmentin.purchaseOrder = truckr_purchaseorder.purchaseOrderID join vw_purchaseOrderTotal on truckr_shipmentin.purchaseOrder = vw_purchaseOrderTotal.purchaseOrderID WHERE period = '{}' ;".format(period))
-    context = {'nav':nav,'inlist':inlist}
+    outlist = shipmentOut.objects.raw("Select shipID, strftime('%Y%m',departure) as period, strftime('%Y',departure) as year, strftime('%m', departure) as month, strftime('%d', departure) as day, arrived,payment, clientName, costShippingHandling, productTotal FROM truckr_shipmentout join truckr_purchaseorder on truckr_shipmentout.purchaseOrder = truckr_purchaseorder.purchaseOrderID join vw_purchaseOrderTotal on truckr_shipmentout.purchaseOrder = vw_purchaseOrderTotal.purchaseOrderID WHERE period = '{}' ;".format(period))
+    context = {'nav':nav,'inlist':inlist,'outlist':outlist}
     return(render(request,'truckr/shipReport.html',context))
+
+def shipReportList(request):
+    username = request.user.username
+    nav = navigation(username)
+    lst = yearmonth.objects.raw("SELECT * FROM truckr_yearmonth WHERE period <= strftime('%Y%m',date()) ORDER BY period DESC;")
+    context = {'nav':nav,'lst':lst}
+    return(render(request,'truckr/shipReportList.html',context))
+   

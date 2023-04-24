@@ -15,6 +15,7 @@
 <body>
 	<h2>Shipment Report</h2>
 <!-- Navigation bar -->
+
 {% if nav %}
 <table>  
 	<tr>
@@ -30,16 +31,11 @@
 <br>
 {% endif %}
 
-<!--
-{% if total %}
-	{% for i in total %}
-	<h4>	Total Payroll: ${{i.total}}</h4>
-	{% endfor %}
-{% endif %}
--->
 
-<h3>Incoming Shipments</h3>
+<div>
+{% if inlist %}
 <table style="width:100%">  
+<h3>Incoming Shipments</h3>
        	<tr>    
 	       	<th>ID</th>    
 		<th>Year</th>
@@ -52,7 +48,6 @@
 		<th>Cost of Products</th>
        	</tr>
 
-	{% if inlist %}
 		{% for i in inlist %}
 			<tr>
 				<td>{{i.shipID}}</td>
@@ -68,12 +63,46 @@
 
 		{% endfor %}
 		{% else %}
-		No records for selected month
+		No incoming shipments for selected month
+</div>
+	{% endif %}
+
+		</table>
+{% if outlist %}
+<div>
+<table style="width:100%">  
+<h3>Outgoing Shipments</h3>
+       	<tr>    
+	       	<th>ID</th>    
+		<th>Year</th>
+	       	<th>Month</th>  
+		<th>Day</th>
+		<th>Arrived</th>
+		<th>Payment</th>
+		<th>Client</th>
+		<th>Shipping and Handling</th>
+		<th>Cost of Products</th>
+       	</tr>
+
+		{% for i in outlist %}
+			<tr>
+				<td>{{i.shipID}}</td>
+				<td>{{i.year}}</td>
+				<td>{{i.month}}</td>
+				<td>{{i.day}}</td>
+				<td>{{i.arrived}}</td>
+				<td>{{i.payment}}</td>
+				<td>{{i.clientName}}</td>
+				<td>${{i.costShippingHandling}}</td>
+				<td>${{i.productTotal}}</td>
+			</tr>
+
+		{% endfor %}
+		{% else %}
+		No outgoing shipments for selected month
+</div>
 	{% endif %}
 		</table>
-<br>
-<!--
-<button type="button" onclick="window.location.href='/admin/truckr/m.add/';">Add Employee</button>
--->
+
 </body>
 </html>
