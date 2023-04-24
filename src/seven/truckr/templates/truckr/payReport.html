@@ -30,13 +30,14 @@
 <br>
 {% endif %}
 
-{% if filt %}
+{% if filt %} <!--Only show to full account -->
+<!--Total pay for the month -->
 {% if total %}
 	{% for i in total %}
 	<h4>	Total Payroll: ${{i.total}}</h4>
 	{% endfor %}
 {% endif %}
-
+<!--Table -->
 <h3>Employees</h3>
 <table style="width:100%">  
        	<tr>    
@@ -62,8 +63,5 @@
 		</table>
 		{% endif %}
 <br>
-<!--
-<button type="button" onclick="window.location.href='/admin/truckr/m.add/';">Add Employee</button>
--->
 </body>
 </html>
