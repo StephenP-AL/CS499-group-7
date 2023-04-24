@@ -15,7 +15,7 @@
 <body>
 	<h2>Products</h2>
 
-<<!-- Navigation bar -->
+<!-- Navigation bar -->
 {% if nav %}
 <table>  
 	<tr>
@@ -30,7 +30,7 @@
 </table>
 <br>
 {% endif %}
-
+<!--Table-->
 <table style="width:100%">  
        	<tr>    
 	       	<th>ID</th>    
@@ -40,7 +40,6 @@
 {% if plist %}
 	{% for product in plist %}
 	<tr>
-		<!--		<td><a href="/employee/{{employee.employeeID}}/">{{employee.employeeID}} </td>-->
 		<td>{{product.productID}}</td>
 		<td>{{product.productName}}</td>
 		<td>{{product.price}}</td>

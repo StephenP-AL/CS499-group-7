@@ -31,6 +31,7 @@
 {% endif %}
 
 
+<!--Overview -->
 	{% for v in maint %}
 	Maintenance ID: {{v.vehID}}  <br>
 	Vehicle Type: {{v.vehType}} <br>
@@ -44,6 +45,7 @@
 	<br>
 
 	<br>
+<!--Parts List -->
 {% if parts%}
 <h3>
 Parts List <br>
@@ -77,25 +79,5 @@ Parts List <br>
 
 <br>
 <br>
-<!--
-<table style="width:100%">  
-       	<tr>    
-	       	<th>ID</th>    
-		<th>Description</th>
-		<th>Completed</th>
-		<th>Detail</th>
-	</tr>
-{% if maint %}
-
-{% for m in maint %}
-	<tr>
-		<td>{{m.maintID}}</td>
-		<td>{{m.description}}</td>
-		<td>{{m.completed}}</td>
-	</tr>	
-{% endfor %}
-{% endif %}
-</table>
--->
 </body>
 </html>

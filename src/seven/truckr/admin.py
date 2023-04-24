@@ -1,9 +1,11 @@
 from django.contrib import admin
 from .models import employee,product,orderItem,purchaseOrder,shipmentIn,shipmentOut,manifest,manifestItem,vehicle,part,partsList,maintenance
 
+
 class adminEmployee(admin.ModelAdmin):
     list_display = ['username','lName','fName','mName']
 
+#Customized title for admin site
 admin.site.site_header = "Truckr Administration"
 
 # Register your models here.
