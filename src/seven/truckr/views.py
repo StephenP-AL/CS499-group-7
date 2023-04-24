@@ -249,6 +249,6 @@ def shipReportList(request):
     username = request.user.username
     nav = navigation(username)
     lst = yearmonth.objects.raw("SELECT * FROM truckr_yearmonth WHERE period <= strftime('%Y%m',date()) ORDER BY period DESC;")
+#    lst = yearmonth.objects.raw("SELECT * FROM truckr_yearmonth JOIN ship_report_list ON truckr_yearmonth.period = ship_report_list.period ORDER BY truckr_yearmonth.period DESC;")
     context = {'nav':nav,'lst':lst}
     return(render(request,'truckr/shipReportList.html',context))
-   
