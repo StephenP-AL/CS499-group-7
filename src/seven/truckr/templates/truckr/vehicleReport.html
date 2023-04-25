@@ -30,6 +30,7 @@
 <br>
 {% endif %}
 
+<!--Vehicle information -->
 {% if veh %}
 	{% for v in veh %}
 	Type: {{v.vehType}}<p>
@@ -37,6 +38,7 @@
 	Description: {{v.year}}-{{v.make}}-{{v.model}} <p>
 	{% endfor %}
 {% endif %}
+<!--Maintenance Table -->
 <h3>Services </h3>
 <table style="width:100%">  
        	<tr>    
@@ -62,8 +64,5 @@
 
 		</table>
 <br>
-<!--
-<button type="button" onclick="window.location.href='/admin/truckr/m.add/';">Add Employee</button>
--->
 </body>
 </html>

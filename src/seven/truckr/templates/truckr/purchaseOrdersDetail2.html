@@ -30,7 +30,7 @@
 <br>
 {% endif %}
 
-
+<!--Order information -->
 	{% for order in po %}
 		ID: {{order.purchaseOrderID}} <br>
 		Shipping and handling: {{order.costShippingHandling}}	
@@ -47,6 +47,8 @@
 	       	<th>Status</th>    
 		<th>Edit</th>
        	</tr>
+
+	<!-- Table of items -->
 {% if items%}
 	{% for item in items%}
 	<tr>
