@@ -6,7 +6,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Maintenance</title>
+    <title>Vehicle Detail</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
@@ -74,7 +74,7 @@
 <h3>Maintenance Services</h3>
 
 	{% for v in veh%}
-		<button type="button" onclick="window.location.href='/vehicleReport/{{v.vehID}}/';">Vehicle Mainteance Report</button>
+		<button type="button" onclick="window.location.href='/vehicleReport/{{v.vehID}}/';">Vehicle Maintenance Report</button>
 	{% endfor %}
 	<br><br>
 <table style="width:100%">  
