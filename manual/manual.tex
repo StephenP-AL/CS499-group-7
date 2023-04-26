@@ -1,0 +1,209 @@
+\documentclass{article}
+\setlength\parindent{0pt}
+\setlength{\parskip}{0.85\baselineskip}
+\title{\textbf{Truckr}\\ \large{User Manual}}
+\date{\vspace{-5ex}}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\graphicspath{{img/}}
+\newcommand{\imgbox}[2]{\fcolorbox{darkgray}{white}{\includegraphics[width=#1px]{#2}}}
+\newcommand{\cont}[1]{\noindent \fcolorbox{darkgray}{orange}{\begin{minipage}{300px} \section{#1} \end{minipage}}\\}
+\newcommand{\scont}[1]{\noindent \fcolorbox{darkgray}{olive}{\begin{minipage}{300px} \subsection{#1} \end{minipage}}\\}
+\newcommand{\degree}[1]{{#1}$^{\circ}$}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{hyperref}
+\begin{document}
+\begin{center}
+\includegraphics[width=300px]{TruckrLogo.jpg}\\
+	\Huge{User Manual}
+\end{center}
+\begin{center}
+\end{center}
+
+
+\noindent \fcolorbox{darkgray}{lightgray}{\begin{minipage}{300px} \tableofcontents \end{minipage}}\\\\\\
+
+	\newpage
+\cont{Installation}
+\begin{itemize}
+	\item Install python 3 using your operating system's package manager, or from https://www.python.org.\\
+		For Debian based Linux distributions (such as Ubuntu):
+		\begin{verbatim}
+		sudo apt install python3
+		\end{verbatim}
+		
+	\item Install Django from the command line. 
+		\begin{verbatim}
+		pip install django
+		\end{verbatim}
+
+	\item Extract the Truckr application to a local drive.
+
+\end{itemize}
+
+\cont{Start Truckr}
+
+\begin{itemize}
+	\item From your command line, navigate to the subdirectory titled 'seven'.
+	\item Execute the following command:
+		\begin{verbatim}
+		python3 manage.py runserver
+		\end{verbatim}
+		This will start and run the testing server.
+	\item In your web browser, navigate to 127.0.0.1:8000
+	\item To stop the server, press Ctrl + C in your terminal.
+\end{itemize}
+
+\cont{Log In}
+
+From the home page, click Sign In.
+
+\imgbox{300}{home.PNG}
+
+This will bring you to the sign-in page.
+
+\imgbox{300}{signin.PNG}
+
+Use the following accounts to test the features of the four different account types.
+
+\begin{tabular}{| l | l | l |}
+	\hline
+	Account Type & username & password \\
+	\hline
+	Driver & squir & groupseven \\
+	Maintenance & moosb & groupseven \\
+	Shipping Manager & fatan & groupseven \\
+	Full Account & badeb & groupseven \\
+	\hline
+\end{tabular}
+
+Once signed in, you will see a welcome screen, and a navigation bar.
+
+\imgbox{300}{signed.PNG}
+
+To sign out, click Home on the navigation bar. \\
+
+On the Home screen, click the Sign Out button.
+
+\cont{Driver Functions}
+
+Driver accounts can view their own incoming and outgoing shipments.
+
+\scont{Incoming Shipments}
+
+Click Incoming Shipments on the navigation bar.
+
+The incoming shipments page will display.
+
+\imgbox{500}{drivershipin.PNG}
+
+You can view the purchase order associated with each shipment by clicking the View button in the Purchase Order field.
+
+\imgbox{300}{purchaseorderdetail.PNG}
+
+Note that driver accounts may not add or edit items in the purchase order.
+
+\scont{Outgoing Shipments}
+
+Click Outgoing Shipment on the navigation bar.
+
+The outgoing shipments page will display.
+
+\imgbox{500}{drivershipout.PNG}
+
+You can view the purchase order as described in the previous section.
+
+You can also view the manifest associated with the shipment by clicking View in the Manifest field.
+
+\imgbox{300}{manifestdetail.PNG}
+
+\cont{Shipping Manager Functions}
+
+Shipping managers can create, view, and edit all incoming and outgoing shipments.
+
+\scont{Create New Shipment}
+
+Click Incoming Shipment or Outgoing Shipment on the navigation bar. 
+
+This will bring up the corresponding shipment page.
+
+\imgbox{300}{manageshipin.PNG}
+
+At the bottom of the screen, click the Add Incoming Shipment or Add Outgoing Shipment button.
+
+This will bring up the appropriate form to create a new shipment.
+
+\imgbox{300}{addship.PNG}
+
+Complete the form and click Save at the bottom of the screen.
+
+Note: if you need to create a new purchase order for your shipment, you can click Add next to Purchase orders on the left side of the screen.
+
+\imgbox{200}{shipadminmenu.PNG}
+
+\scont{Edit Shipment}
+
+Click Incoming Shipment or Outgoing Shipment on the navigation bar. 
+
+This will bring up the corresponding shipment page.
+
+\imgbox{300}{manageshipin.PNG}
+
+Locate the shipment you wish to edit, and click the corresponding Edit button in the Edit field.
+
+This will bring up a form to edit the shipment.
+
+\imgbox{200}{editshipment.PNG}
+
+After you have made your changes, click Save at the bottom of the page.
+
+\scont{Shipping Reports}
+
+Click Incoming Shipment or Outgoing Shipment on the navigation bar. 
+
+This will bring up the corresponding shipment page.
+
+\imgbox{300}{manageshipin.PNG}
+
+Click the Monthly Shipping Reports button. This will bring up a listing of reports up to the current month.
+
+\imgbox{300}{shipreportlist.PNG}
+
+Click Select Report to view the report.
+
+\imgbox{300}{shipreport.PNG}
+
+Note: The demonstrations data contains shipments dated 2023/02, 2022/02, and 2022/03. All other reports will be empty.
+
+\cont{Maintenance Functions}
+
+Maintenance accounts can view, edit, and create all vehicle and maintenance records.
+
+\scont{Add a Vehicle}
+
+From the list of vehicles, click the Add Vehicle button at the bottom of the page to bring up the Add vehicle form.
+
+\imgbox{200}{addvehicle.PNG}
+
+If the vehicle requires a new parts list, click Add next to Parts lists on the menu on the left side of the page.
+
+\imgbox{150}{maintadminmenu.PNG}
+
+\scont{View Vehicle Information}
+
+Click Vehicles in the navigation bar to bring up a list of vehicles.
+
+\imgbox{300}{vehiclelist.PNG}
+
+Click the Details button in the Details field to view more information about the vehicle
+
+\imgbox{300}{vehicledetail.PNG}
+
+\scont{Vehicle Report}
+
+From the vehicle detail page, click the Vehicle Maintenance Report button.
+\end{document}
