@@ -30,7 +30,7 @@
 	\newpage
 \cont{Installation}
 \begin{itemize}
-	\item Install python 3 using your operating system's package manager, or from https://www.python.org.\\
+	\item Install python 3 from https://www.python.org or using your operating system's package manager.\\
 		For Debian based Linux distributions (such as Ubuntu):
 		\begin{verbatim}
 		sudo apt install python3
@@ -54,7 +54,7 @@
 		python3 manage.py runserver
 		\end{verbatim}
 		This will start and run the testing server.
-	\item In your web browser, navigate to 127.0.0.1:8000
+	\item In your web browser, navigate to \textbf{\href{http://127.0.0.1:8000/}{127.0.0.1:8000}}
 	\item To stop the server, press Ctrl + C in your terminal.
 \end{itemize}
 
@@ -123,6 +123,7 @@ You can also view the manifest associated with the shipment by clicking View in 
 
 \cont{Shipping Manager Functions}
 
+\label{sec:ship}
 Shipping managers can create, view, and edit all incoming and outgoing shipments.
 
 \scont{Create New Shipment}
@@ -179,15 +180,18 @@ Click Select Report to view the report.
 
 Note: The demonstrations data contains shipments dated 2023/02, 2022/02, and 2022/03. All other reports will be empty.
 
+\label{sec:maint}
 \cont{Maintenance Functions}
 
 Maintenance accounts can view, edit, and create all vehicle and maintenance records.
 
 \scont{Add a Vehicle}
 
+On the navigation bar, click Vehicles to bring up a list of vehicles.
+
 From the list of vehicles, click the Add Vehicle button at the bottom of the page to bring up the Add vehicle form.
 
-\imgbox{200}{addvehicle.PNG}
+\imgbox{150}{addvehicle.PNG}
 
 If the vehicle requires a new parts list, click Add next to Parts lists on the menu on the left side of the page.
 
@@ -205,5 +209,97 @@ Click the Details button in the Details field to view more information about the
 
 \scont{Vehicle Report}
 
-From the vehicle detail page, click the Vehicle Maintenance Report button.
+From the vehicle detail page, click the Vehicle Maintenance Report button to bring up the vehicle's report.
+
+\imgbox{300}{vehiclereport.PNG}
+
+\scont{Add Maintenance Service}
+
+On the navigation bar, click Maintenance to bring up a list of all services.
+
+\imgbox{300}{maintlist.PNG}
+
+Click the Add Service button at the bottom of the page to bring up the Add maintenance form.
+
+\imgbox{300}{addmaint.PNG}
+
+Complete the form, and click Save at the bottom of the screen.
+
+If the vehicle requires a new parts list, click Add next to Parts lists on the menu on the left side of the page.
+
+\imgbox{150}{maintadminmenu.PNG}
+
+You can also access this form from the vehicle details page.
+
+\scont{Maintenance Report}
+
+On the navigation bar, click Maintenance to bring up a list of all services.
+
+Click the Monthly Maintenance Reports button to bring up a list of monthly maintenance reports.
+
+\imgbox{300}{maintreportlist}
+
+Click the Select Report button in the Select field o the table to view the maintenance report for that month.
+
+\imgbox{300}{maintreport.PNG}
+
+\cont{Full Account Functions}
+
+The full account can create, view, and edit all shipping, vehicle, maintenance, employee, and account data.
+
+For shipping data, see the \hyperref[sec:ship]{\textbf{Shipping Manager}} section of this document.
+
+For vehicle and maintenance data, see the \hyperref[sec:maint]{\textbf{Maintenance}} section of this document.
+
+\scont{Add New Employee}
+
+On the navigation bar, click Employees to bring up a list of all employees.
+
+\imgbox{300}{employee.PNG}
+
+Click the Add Employee button at the bottom of the page. This will bring up the Add employee form.
+
+\imgbox{200}{addemployee.PNG}
+
+Complete the form with employee data, then click Save at the bottom of the page.
+
+Click Add next to Accounts on the left side of the screen to assign a roll to the employee.
+
+\imgbox{200}{addaccount.PNG}
+
+Enter the employeeID, and account type (driver, maint, ship, or full), then click Save.
+
+{\Large{Skip the following steps for driver accounts:}}
+
+Click Users on the left side of the screen to bring up the list of users.
+
+\imgbox{300}{users.PNG}
+
+Click the username of the new employee to edit the account data.
+
+\imgbox{300}{permission.PNG}
+
+Check the Staff Status checkbox.
+
+In the group chooser, select full, maint, or ship from the Available groups field.
+
+Click the right arrow to move the group to the Chosen groups field.
+
+Click Save at the bottom of the page.
+
+
+\scont{Payroll Reports}
+
+From the Employees page, click the Payroll Reports button to bring up a list of payroll reports.
+
+\imgbox{300}{payreportlist.PNG}
+
+Click the Select Report button in the Select field to bring up the payroll report for the corresponding month.
+
+\imgbox{300}{payreport.PNG}
+
+
+
+
+
 \end{document}
