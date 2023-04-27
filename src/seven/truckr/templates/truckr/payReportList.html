@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Payroll Report</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+    <link rel="icon" type="png" href="{% static 'image/TruckrIcon.png'%}">
+  </head>
+<body>
+	<h2>Payroll Report</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+		{% if item.url == request.get_full_path %}
+			<th><a href='{{item.url}}' style="color:#c6f8b7">{{item.text}}</a></th>
+		{% else %}
+			<th><a href='{{item.url}}'>{{item.text}}</a></th>
+		{% endif %}
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
+<!--Table-->
+<table style="width:100%">  
+       	<tr>    
+	       	<th>Year</th>    
+	       	<th>Month</th>    
+		<th>Select</th>
+       	</tr>
+
+	{% if lst %}
+		{% for l in lst %}
+			<tr>
+			<td>{{l.year}}</td>
+			<td>{{l.month}}</td>
+			<td style = text-align:center><button type="button" onclick="window.location.href='/payReport/{{l.year}}/{{l.month}}/';">Select Report</button></td>
+			</tr>
+		{% endfor %}
+	{% else %}
+		<p>No reports are available.</p>
+	{% endif %}
+
+</table>
+</body>
+</html>

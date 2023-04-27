@@ -30,6 +30,7 @@
 <br>
 {% endif %}
 
+<!--Table -->
 {% if man %}
 	{% for m in man %}
 	Manifest ID: {{m.manifestID}}<br>
@@ -57,7 +58,7 @@
 	</tr>
 	{% endfor %}
 {% else %}
-	<p>No orders are available.</p>
+	<p>No items are available.</p>
 {% endif %}
 </table>
 </body>

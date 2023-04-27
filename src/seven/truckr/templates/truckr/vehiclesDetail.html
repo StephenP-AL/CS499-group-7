@@ -6,7 +6,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Maintenance</title>
+    <title>Vehicle Detail</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
@@ -30,11 +30,11 @@
 <br>
 {% endif %}
 
-
+<!-- Vehicle Data -->
 	{% for v in veh%}
 	Type: {{v.vehType}} <br>
-	ID: {{v.vehID}}  <br>
-Description: {{v.year}} - {{v.make}} - {{v.model}} <br>
+	Vehicle ID: {{v.vehID}}  <br>
+	Description: {{v.year}} - {{v.make}} - {{v.model}} <br>
 
 	{% endfor %}
 	<br>
@@ -49,6 +49,7 @@ Description: {{v.year}} - {{v.make}} - {{v.model}} <br>
 	       	<th>Part Name</th>    
 		<th>Edit</th>
        	</tr>
+	<!-- Vehicle parts list -->
 {% if parts%}
 	{% for item in parts%}
 	<tr>
@@ -69,8 +70,13 @@ Description: {{v.year}} - {{v.make}} - {{v.model}} <br>
 
 <br>
 <br>
+<!-- Maintenance table -->
 <h3>Maintenance Services</h3>
 
+	{% for v in veh%}
+		<button type="button" onclick="window.location.href='/vehicleReport/{{v.vehID}}/';">Vehicle Maintenance Report</button>
+	{% endfor %}
+	<br><br>
 <table style="width:100%">  
        	<tr>    
 	       	<th>ID</th>    

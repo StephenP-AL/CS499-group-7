@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Vehicle Maintenance Report</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+    <link rel="icon" type="png" href="{% static 'image/TruckrIcon.png'%}">
+  </head>
+<body>
+	<h2>Vehicle Maintenance Report</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+		{% if item.url == request.get_full_path %}
+			<th><a href='{{item.url}}' style="color:#c6f8b7">{{item.text}}</a></th>
+		{% else %}
+			<th><a href='{{item.url}}'>{{item.text}}</a></th>
+		{% endif %}
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
+<!--Vehicle information -->
+{% if veh %}
+	{% for v in veh %}
+	Type: {{v.vehType}}<p>
+	Vehicle ID: {{v.vehID}} <p>
+	Description: {{v.year}}-{{v.make}}-{{v.model}} <p>
+	{% endfor %}
+{% endif %}
+<!--Maintenance Table -->
+<h3>Services </h3>
+<table style="width:100%">  
+       	<tr>    
+	       	<th>Vehicle</th>    
+		<th>Description</th>
+	       	<th>Completed</th>  
+		<th>Total Cost</th>
+       	</tr>
+
+		{% if maint %}
+		{% for m in maint %}
+			<tr>
+				<td>{{m.maintID}}</td>
+				<td>{{m.description}}</td>
+				<td>{{m.completed}}</td>
+				<td>${{m.total}}</td>
+			</tr>
+
+		{% endfor %}
+		{% else %}
+		No maintenance completed in selected month
+		{% endif %}
+
+		</table>
+<br>
+</body>
+</html>

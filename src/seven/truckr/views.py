@@ -4,10 +4,12 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList,maintenance
+from truckr.models import employee,product,purchaseOrder,orderItem,shipmentIn, shipmentOut,navbar,manifest,manifestItem,vehicle,part,partsList,maintenance,yearmonth
 
 
 # Create your views here.
+
+# Set of links based on user group
 def navigation(username):
     nav = navbar.objects.raw(""" SELECT * FROM truckr_employee JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID JOIN truckr_navbar ON truckr_account.accountType = truckr_navbar.accountType WHERE truckr_employee.username = '%s' ORDER BY id; """ % username)
     return nav
@@ -79,14 +81,18 @@ def signout(request):
 def index(request):
     return HttpResponse("Truckr Index")
 
+#employees page
 def employees(request):
     username = request.user.username
     nav = navigation(username)
+    #List of employee records
     elist = employee.objects.order_by('employeeID')
+    # Single record if user is in full group. Used to hide employee data from non-full account users
     filt = employee.objects.raw("SELECT truckr_account.employeeID,username,accountType FROM truckr_employee JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID WHERE accountType = 'full' and username = '{}';".format(username))
     context = {'elist': elist, 'nav': nav,'filt':filt}
     return render(request, 'truckr/employees.html', context)
 
+#Products listing page 
 def products(request):
     username = request.user.username
     nav = navigation(username)
@@ -95,6 +101,7 @@ def products(request):
     context = {'plist': plist,'nav': nav}
     return render(request, 'truckr/products.html', context)
 
+#Purchase Orders list page
 def purchaseOrders(request):
     username = request.user.username
     nav = navigation(username)
@@ -103,6 +110,7 @@ def purchaseOrders(request):
     context = {'polist':polist,'nav': nav}
     return(render(request, 'truckr/purchaseOrders.html', context))
 
+# Details of individual purchase order
 def purchaseOrderDetail(request, ID):
     username = request.user.username
     nav = navigation(username)
@@ -114,6 +122,7 @@ def purchaseOrderDetail(request, ID):
     context = {'items':items,'nav':nav, 'po':po}
     return(render(request, 'truckr/purchaseOrdersDetail2.html', context))
 
+#Details of a shipment manifist
 def manifestDetail(request,ID):
     username = request.user.username
     nav = navigation(username)
@@ -157,6 +166,7 @@ def manageShipmentsOut(request):
     context = {'lst':lst,'nav': nav}
     return(render(request, 'truckr/manageShipmentsOut.html', context))
 
+#Maintenance views
 def vehicles(request):
     username = request.user.username
     nav = navigation(username)
@@ -191,6 +201,9 @@ def maintenanceDetail(request, ID):
     context = {'nav':nav,'maint':maint, 'parts':parts}
     return(render(request, 'truckr/maintenanceDetail.html', context))
 
+#Reports
+
+#maintenance report for a single month
 def maintenanceReport(request, year, month):
     username = request.user.username
     nav = navigation(username)
@@ -201,6 +214,7 @@ def maintenanceReport(request, year, month):
     context = {'nav':nav,'maint':maint}
     return(render(request, 'truckr/maintenanceReport.html', context))
 
+#listing of all maintenance reports
 def maintenanceReportList(request):
     username = request.user.username
     nav = navigation(username)
@@ -209,4 +223,62 @@ def maintenanceReportList(request):
     context = {'nav':nav,'maint':maint}
     return(render(request, 'truckr/maintenanceReportList.html', context))
 
+#listing of all maintenance performed on a vehicle
+def vehicleReport(request, ID):
+    username = request.user.username
+    nav = navigation(username)
+    veh = vehicle.objects.raw("SELECT * FROM truckr_vehicle WHERE vehID = %s;", [ID]) 
+    maint = maintenance.objects.raw("SELECT * FROM maintenance_rpt_bymonth WHERE vehID = %s;", [ID])
+    context = {'nav':nav,'maint':maint,'veh':veh,'ID':ID}
+    return(render(request,'truckr/vehicleReport.html',context))
+ 
+#monthly pay report
+def payReport(request, year, month):
+    username = request.user.username
+    nav = navigation(username)
+    #Formats year/month to a single field to use as a filter    
+    period = str(year) + str('{:02d}'.format(month)) 
 
+    #Calculates total monthly salary for all employees
+    total = employee.objects.raw("SELECT truckr_account.employeeID, sum(pay) as total FROM payReport JOIN truckr_account ON payReport.ID = truckr_account.employeeID WHERE (yr||mo) <= '{}';".format(period))
+    #List of all emplyees and salaries
+    elst = employee.objects.raw("SELECT * FROM payReport JOIN truckr_account ON payReport.ID = truckr_account.employeeID WHERE (yr||mo) <= '{}';".format(period))
+    #Used to restrict page to only full account
+    filt = employee.objects.raw("SELECT truckr_account.employeeID,username,accountType FROM truckr_employee JOIN truckr_account ON truckr_employee.employeeID = truckr_account.employeeID WHERE accountType = 'full' and username = '{}';".format(username))
+    context = {'nav':nav, 'total':total,'filt':filt,'elst':elst}
+    return(render(request,'truckr/payReport.html',context))
+
+# Listing of all pay reports
+def payReportList(request):
+    username = request.user.username
+    nav = navigation(username)
+    #Pulls a list of years and months up to the current year and month
+    #This should continue to work until 2064, at which point we will need to add more years into the 'years' table
+    #That's a simple 'INSERT INTO years SELECT max(year) + 1 FROM years;' for as may years as you like
+    lst = yearmonth.objects.raw("SELECT * FROM truckr_yearmonth WHERE period <= strftime('%Y%m',date()) ORDER BY period DESC;")
+    context = {'nav':nav,'lst':lst}
+    return(render(request,'truckr/payReportList.html',context))
+
+#monthly shipments report
+def shipReport(request,year,month):
+    username = request.user.username
+    nav = navigation(username)
+    #Format year/month to single field for filtering
+    period = str(year) + str('{:02d}'.format(month))
+    #incoming shipments
+    inlist = shipmentIn.objects.raw("select shipID, strftime('%Y%m',departure) as period, strftime('%Y',departure) as year, strftime('%m', departure) as month, strftime('%d', departure) as day, arrived,payment, clientName, costShippingHandling, productTotal FROM truckr_shipmentin join truckr_purchaseorder on truckr_shipmentin.purchaseOrder = truckr_purchaseorder.purchaseOrderID join vw_purchaseOrderTotal on truckr_shipmentin.purchaseOrder = vw_purchaseOrderTotal.purchaseOrderID WHERE period = '{}' ;".format(period))
+    #Outgoing shipments
+    outlist = shipmentOut.objects.raw("Select shipID, strftime('%Y%m',departure) as period, strftime('%Y',departure) as year, strftime('%m', departure) as month, strftime('%d', departure) as day, arrived,payment, clientName, costShippingHandling, productTotal FROM truckr_shipmentout join truckr_purchaseorder on truckr_shipmentout.purchaseOrder = truckr_purchaseorder.purchaseOrderID join vw_purchaseOrderTotal on truckr_shipmentout.purchaseOrder = vw_purchaseOrderTotal.purchaseOrderID WHERE period = '{}' ;".format(period))
+    context = {'nav':nav,'inlist':inlist,'outlist':outlist}
+    return(render(request,'truckr/shipReport.html',context))
+
+#List of shipping reports
+def shipReportList(request):
+    username = request.user.username
+    nav = navigation(username)
+    #This lists all months up to current. I would like to have only listed relavent months, but I couldn't figure out an appropriate select query to join either of the two shipment tables.
+    #I also tried creating a 3rd table that automatically inserted new months, but I couldn't get Django to run them.
+    lst = yearmonth.objects.raw("SELECT * FROM truckr_yearmonth WHERE period <= strftime('%Y%m',date()) ORDER BY period DESC;")
+#    lst = yearmonth.objects.raw("SELECT * FROM truckr_yearmonth JOIN ship_report_list ON truckr_yearmonth.period = ship_report_list.period ORDER BY truckr_yearmonth.period DESC;")
+    context = {'nav':nav,'lst':lst}
+    return(render(request,'truckr/shipReportList.html',context))

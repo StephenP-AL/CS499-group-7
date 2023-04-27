@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Payroll Report</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+    <link rel="icon" type="png" href="{% static 'image/TruckrIcon.png'%}">
+  </head>
+<body>
+	<h2>Payroll Report</h2>
+<!-- Navigation bar -->
+{% if nav %}
+<table>  
+	<tr>
+	{% for item in nav %}
+		{% if item.url == request.get_full_path %}
+			<th><a href='{{item.url}}' style="color:#c6f8b7">{{item.text}}</a></th>
+		{% else %}
+			<th><a href='{{item.url}}'>{{item.text}}</a></th>
+		{% endif %}
+	{% endfor %}
+	</tr>
+</table>
+<br>
+{% endif %}
+
+{% if filt %} <!--Only show to full account -->
+<!--Total pay for the month -->
+{% if total %}
+	{% for i in total %}
+	<h4>	Total Payroll: ${{i.total}}</h4>
+	{% endfor %}
+{% endif %}
+<!--Table -->
+<h3>Employees</h3>
+<table style="width:100%">  
+       	<tr>    
+	       	<th>Name</th>    
+		<th>Employee ID</th>
+	       	<th>Account Type</th>  
+		<th>Pay</th>
+       	</tr>
+
+	{% if elst %}
+		{% for l in elst %}
+			<tr>
+				<td>{{l.fullName}}</td>
+				<td>{{l.employeeID}}</td>
+				<td>{{l.accountType}}</td>
+				<td>${{l.pay}}</td>
+			</tr>
+
+		{% endfor %}
+		{% else %}
+		No records for selected month
+	{% endif %}
+		</table>
+		{% endif %}
+<br>
+</body>
+</html>
