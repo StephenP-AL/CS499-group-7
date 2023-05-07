@@ -1,10 +1,9 @@
-# CS499
+# Truckr, database for transportaion companies.
 
-Meeting availability: https://www.when2meet.com/?18309898-DjKsb
+This is a CS499 senior project; we got a B.
 
-Jira: https://truckingmanagement.atlassian.net/jira/software/c/projects/TM/boards/2
+This is not production software and should not be used in the wild. I'm maintaining it as an example for others.
 
-Drive: https://drive.google.com/drive/folders/1ObYgKz0E5XWXXuGfP-acnbyo8dVJixEK
+Project is based on the Django framework using a sqlite3 DBMS.
 
-
-All employees for test data have password groupseven
+All employees for test data have password 'groupseven'.
